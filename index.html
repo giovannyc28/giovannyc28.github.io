@@ -13,6 +13,64 @@
 			<section id="three" class="wrapper style2 special">
 				<h3>BI - Ingresos Proveedores Tecnología</h3>
 				<header class="major">
+					<div id = 'movilDiv' >
+						<table id='tabla_movil'>
+							<caption> Set de Datos Móviles</caption>
+								<thead>
+								<tr>
+									<th >Año</th>
+									<th>Trimestre</th>
+									<th>Proveedor</th>
+									<th>Segmento</th>
+									<th>Terminal</th>
+									<th>Ingresos</th>
+								</tr>
+								<tr id=filtro_movil>
+									<td><select id='a_o' name='a_o' onchange='aplicarFiltro("movil")' ><option value="--">--</option></select></td>
+									<td><select id='trimestre' name='trimestre' onchange='aplicarFiltro("movil")'><option value="--">--</option></select></td>
+									<td><select id='proveedor' name='proveedor' onchange='aplicarFiltro("movil")'><option value="--">--</option></select></td>
+									<td><select id='segmento' name='segmento' onchange='aplicarFiltro("movil")'><option value="--">--</option></select></td>	
+									<td><select id='terminal' name='terminal' onchange='aplicarFiltro("movil")'><option value="--">--</option></select></td>									
+								</tr>
+							</thead>
+							<tbody>
+								
+							</tbody>
+						</table>
+						<input type=button value='<<' onclick="avanzarPagina('-0', 'movil')">
+						<input type=button value='<'  onclick="avanzarPagina('-1', 'movil')">
+						<input type=button value='>'  onclick="avanzarPagina('1', 'movil')" >
+						<input type=button value='>>' onclick="avanzarPagina('0', 'movil')"> 
+						<input id='pagina_movil' type=button value='1'> de  <input id=npaginas_movil type=button value='1'>
+					</div>
+					<div id = 'fijoDiv'>
+						<table id='tabla_fijo'>
+							<caption> Set de Datos Fijos</caption>
+								<thead>
+								<tr>
+									<th >Año</th>
+									<th>Trimestre</th>
+									<th>Proveedor</th>
+									<th>Ingresos</th>
+									
+								</tr>
+								<tr id="filtro_fijo">
+									<td><select id='a_o' name='a_o' onchange='aplicarFiltro("fijo")'><option value="--">--</option></select></td>
+									<td><select id='trimestre' name='trimestre' onchange='aplicarFiltro("fijo")'><option value="--">--</option></select></td>
+									<td><select id='proveedor' name='proveedor' onchange='aplicarFiltro("fijo")'><option value="--">--</option></select></td>
+									
+								</tr>
+							</thead>
+							<tbody>
+								
+							</tbody>
+						</table>
+						<input type=button value='<<' onclick="avanzarPagina('-0', 'fijo')">
+						<input type=button value='<'  onclick="avanzarPagina('-1', 'fijo')">
+						<input type=button value='>'  onclick="avanzarPagina('1', 'fijo')" >
+						<input type=button value='>>' onclick="avanzarPagina('0', 'fijo')"> 
+						<input id='pagina_fijo' type=button value='1'> de  <input id=npaginas_fijo type=button value='1'> 
+					</div>
 					<iframe width="90%" height="500" src="https://app.powerbi.com/reportEmbed?reportId=1b83f01d-bcf9-4d89-89a1-5c89fd1b55d8&autoAuth=true&ctid=aa0f959f-218c-43e6-a575-501cdd17a75d&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXBhYXMtMS1zY3VzLXJlZGlyZWN0LmFuYWx5c2lzLndpbmRvd3MubmV0LyJ9" frameborder="0" allowFullScreen="true"></iframe>
 				</header>
 				<ul class="actions special">
@@ -37,6 +95,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="assets/js/data.js"></script>
 
 	</body>
 </html>
