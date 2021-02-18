@@ -9,11 +9,11 @@ function getBrowserInfo() {
     M = M? [M[1], M[2]]: [N, navigator.appVersion,'-?'];
     return M;
 };
+	alert('origen <' + document.referrer + '>');
+	alert('Posicion' + dominiosAceptadosMovil.indexOf(document.referrer));
 
 var dominiosAceptadosMovil= new Array ('https://lm.facebook.com', 'https://m.facebook.com', 'http://m.facebook.com/', 'https://l.instagram.com')
 function mostrarValidacionNavegador() {
-	alert('origen <' + document.referrer + '>');
-	alert('Posicion' + dominiosAceptadosMovil.indexOf(document.referrer));
     if (dominiosAceptadosMovil.indexOf(document.referrer) == -1){
     	alert('No mostrar')
     }
