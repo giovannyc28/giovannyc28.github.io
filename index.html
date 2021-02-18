@@ -1,6 +1,67 @@
 <!DOCTYPE HTML>
 <script>
-	alert("Origen:" + document.referrer);
+function getBrowserInfo() {
+    var N = navigator.appName, ua= navigator.userAgent, tem;
+    var M = ua.match(/(opera|chrome|safari|firefox|msie|trident)\/?\s*(\.?\d+(\.\d+)*)/i);
+    if(M && (tem= ua.match(/version\/([\.\d]+)/i))!= null) {
+        M[2]=tem[1];
+    }
+    M = M? [M[1], M[2]]: [N, navigator.appVersion,'-?'];
+    return M;
+};
+var dominiosAceptadosMovil= new Array ('https://lm.facebook.com', 'https://m.facebook.com', 'https://l.instagram.com')
+
+function mostrarValidacionNavegador() {
+    if (dominiosAceptadosMovil.indexOf(document.referrer) == -1){
+    	alert('No mostrar')
+    }
+}
+
+var resultado = getBrowserInfo();
+
+if (resultado && resultado.length > 0) {
+    var versionBrowser = resultado[1].split(".");
+    versionBrowser = versionBrowser[0] + "." + versionBrowser[1];
+    if (window.navigator.userAgent.indexOf("Edge") > -1 ) {
+        resultado[0] = 'Edge';
+    }
+    switch (resultado[0].toLowerCase()) {
+        case "chrome":
+            if (!isNaN(versionBrowser) && (versionBrowser) <= 21) {
+                mostrarValidacionNavegador();
+            }
+        break;
+
+        case "safari":
+            if (!isNaN(versionBrowser) && Number(versionBrowser) <= 6.1) {
+                mostrarValidacionNavegador();
+            }
+        break;
+        
+        case "firefox":
+            if (!isNaN(versionBrowser) && Number(versionBrowser) <= 23) {
+                mostrarValidacionNavegador();
+            }
+        break;
+
+        case "msie":
+            if (!isNaN(versionBrowser) && (versionBrowser) <= 10) {
+                mostrarValidacionNavegador();
+            }
+        break;
+
+        case "edge":
+        break;
+        
+        case "opera":
+            if (!isNaN(versionBrowser) && Number(versionBrowser) <= 11.5) {
+                mostrarValidacionNavegador();
+            }
+        break;
+    }
+} else {
+    mostrarValidacionNavegador();
+}
 </script>
 <html>
 	<head>
