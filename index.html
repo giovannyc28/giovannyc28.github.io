@@ -10,9 +10,8 @@ function getBrowserInfo() {
     return M;
 };
 
-
+var dominiosAceptadosMovil= new Array ('https://lm.facebook.com', 'https://m.facebook.com', 'http://m.facebook.com/', 'https://l.instagram.com')
 function mostrarValidacionNavegador() {
-	var dominiosAceptadosMovil= new Array ('https://lm.facebook.com', 'https://m.facebook.com', 'http://m.facebok.com/', 'https://l.instagram.com')
 	alert('origen <' + document.referrer + '>');
 	alert('Posicion' + dominiosAceptadosMovil.indexOf(document.referrer));
     if (dominiosAceptadosMovil.indexOf(document.referrer) == -1){
