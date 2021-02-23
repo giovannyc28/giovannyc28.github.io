@@ -16,8 +16,9 @@ function mostrarValidacionNavegador() {
 	var swExist = 0;
 	for (i = 0 ; i<dominiosAceptadosMovil.length; i++ ){
     	strDominio = dominiosAceptadosMovil[i].toLowerCase()
-    		console.log(strDominio)
-    	if(strDominio  == document.referrer.toLowerCase()){
+    		console.log(strDominio);
+	strReferrer = document.referrer.toLowerCase()
+    	if(strReferrer.search(strDominio) >= 0 ){
 		alert("Dominios Aceptados Movil: " + strDominio);
     		swExist = -1
         	break;
@@ -26,7 +27,7 @@ function mostrarValidacionNavegador() {
 	
 alert("Encontro Dominio" + swExist);
 	
-    if (swExist == -1){
+    if (swExist == -1 ){
     	 document.getElementById("mostrarValidacionNavegador").innerHTML = '<section class="wrapper-full-display-aviso-fb aviso-navegadores-2-fb"> <section class="wrapper-full-display-inner-fb"> <article class="links-wrapper-full-display-fb"> <a href="https://www.google.com/intl/es/chrome/" title="" target="" class="links-item-full-display-fb"><img src="/wps/wcm/myconnect/avvillas/4e5e3f97-87a0-4545-8731-a640f81a6402/chrome-icon.png?MOD=AJPERES" /></a> <a href="https://support.microsoft.com/es-co/help/17621/internet-explorer-downloads" title="" target="" class="links-item-full-display-fb"><img src="/wps/wcm/myconnect/avvillas/9950f241-ba08-4665-977f-6fb1d75c54ad/explorer-icon.png?MOD=AJPERES" /></a> <a href="https://www.mozilla.org/es-ES/firefox/new/" title="" target="" class="links-item-full-display-fb"><img src="/wps/wcm/myconnect/avvillas/ab1af853-12dd-43a8-aa74-4b1a37fbf0b5/firefox-icon.png?MOD=AJPERES" /></a> <a href="https://www.opera.com/es" title="" target="" class="links-item-full-display-fb"><img src="/wps/wcm/myconnect/avvillas/21b46153-c5ea-4f11-a7f0-a4dc7a360fa2/opera-icon.png?MOD=AJPERES" /></a> <a href="https://www.apple.com/co/safari/" title="" target="" class="links-item-full-display-fb"><img src="/wps/wcm/myconnect/avvillas/aa17dc3b-4e73-4f2c-8362-59431327c40a/safari-icon.png?MOD=AJPERES" /></a> </article> </section> </section>';
     }
 }
