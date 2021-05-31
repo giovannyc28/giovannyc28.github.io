@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
 <script>
-	alert("Modifique el condigo V2.0");
 function getBrowserInfo() {
     var N = navigator.appName, ua= navigator.userAgent, tem;
     var M = ua.match(/(opera|chrome|safari|firefox|msie|trident)\/?\s*(\.?\d+(\.\d+)*)/i);
@@ -13,6 +12,7 @@ function getBrowserInfo() {
 	alert('origen <' + document.referrer + '>');
 	
 var dominiosAceptadosMovil= new Array ('facebook', 'instagram')
+
 function mostrarValidacionNavegador() {
 	var swExist = 0;
 	for (i = 0 ; i<dominiosAceptadosMovil.length; i++ ){
@@ -41,6 +41,8 @@ if (resultado && resultado.length > 0) {
     if (window.navigator.userAgent.indexOf("Edge") > -1 ) {
         resultado[0] = 'Edge';
     }
+	alert("Navegador : " + resultado[0].toLowerCase());
+	alert("Version :" + versionBrowser );
     switch (resultado[0].toLowerCase()) {
         case "chrome":
             if (!isNaN(versionBrowser) && (versionBrowser) <= 21) {
