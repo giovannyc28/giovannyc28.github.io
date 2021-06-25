@@ -81,6 +81,11 @@ if (resultado && resultado.length > 0) {
 } else {
     mostrarValidacionNavegador();
 }
+	
+window.addEventListener("beforeunload", function (event) {
+  event.preventDefault();
+});
+	
 </script>
 <html>
 	<head>
