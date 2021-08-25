@@ -82,10 +82,19 @@ if (resultado && resultado.length > 0) {
     mostrarValidacionNavegador();
 }
 	
-window.addEventListener("beforeunload", function (event) {
+/*window.addEventListener("beforeunload", function (event) {
   	var confirmationMessage = "\o/";
 	e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
   	return confirmationMessage;              // Gecko, WebKit, Chrome <34
+});*/
+var isDirty = true;
+var message = '** You have unsaved changes. **'
+window.addEventListener('beforeunload', function(evt){
+  if(isDirty) {
+    evt.returnValue = message;
+    return message;
+  }
+  delete evt.returnValue;
 });
 	
 </script>
