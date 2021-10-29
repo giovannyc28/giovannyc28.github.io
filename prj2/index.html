@@ -1,35 +1,414 @@
 <!DOCTYPE html>
-<!-- saved from url=(0052)https://jsfiddle.net/giovannycanasto/kpotwdma/2/show -->
+<!-- saved from url=(0064)https://fiddle.jshell.net/giovannycanasto/kpotwdma/2/show/light/ -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    
-    <meta http-equiv="edit-Type" edit="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>JSFiddle</title>
-
-      <meta name="robots" content="index, follow">
-      <meta name="googlebot" content="index, follow">
-
-      <script type="text/javascript">
-        var height
-        var force_height = null
-        var slug = "kpotwdma"
-        var show_src = "//fiddle.jshell.net/giovannycanasto/kpotwdma/2/show/light/"
-        var resize_element_counter = 0
-        var shell_edit_url = "/giovannycanasto/kpotwdma/2/light/"
-      </script>
-
-      <script src="./demo_vue_files/embed.js"></script>
-      <link rel="stylesheet" media="screen" href="./demo_vue_files/embed-light.css">
-      <link rel="icon" href="https://jsfiddle.net/img/favicon.png">
-  </head>
-  <body id="sylvester-standalone">
-
-    <div id="result">
-      
-    <iframe src="./demo_vue_files/saved_resource.html" frameborder="0" sandbox="allow-forms allow-scripts allow-same-origin allow-top-navigation-by-user-activation allow-downloads allow-modals allow-popups" allow="midi; geolocation; microphone; camera; display-capture; encrypted-media;"></iframe></div>
-
-    
   
+  <title></title>
+  
+
+
+
+  <script type="text/javascript" src="./js/dummy.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="./css/result-light.css">
+
+      <script type="text/javascript" src="./js/vue.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="./css/themify-icons.css">
+      <link rel="stylesheet" type="text/css" href="./css/vue-form-wizard.min.css">
+      <script type="text/javascript" src="./js/vue-form-wizard.js"></script>
+      <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+      <script type="text/javascript" src="./js/vfg.js"></script>
+
+  <style id="compiled-css" type="text/css">
+      pre {
+	overflow: auto;
+}
+	pre .string { color: #885800; }
+	pre .number { color: blue; }
+	pre .boolean { color: magenta; }
+	pre .null { color: red; }
+	pre .key { color: green; }  
+    /* EOS */
+  </style>
+
+  <script id="insert"></script>
+
+
+</head>
+<body>
+  <div id="app">
+    <div>
+            <form-wizard @on-complete="onComplete"
+                         color="#1C75BC"
+                         error-color="#a94442"
+                         >
+                <tab-content title="INFORMACIÓN DEL CONTRATANTE "
+                             icon="ti-user" :before-change="validateFirstTab">
+                   <vue-form-generator :model="model" 
+                                       :schema="firstTabSchema"
+                                       :options="formOptions"
+                                       ref="firstTabForm"
+                                       >
+                                         
+                   </vue-form-generator>
+                </tab-content>
+                <tab-content title="DATOS DE LOS BENEFICIARIOS"
+                             icon="ti-package" :before-change="validateSecondTab">
+                 <vue-form-generator :model="model" 
+                                       :schema="secondTabSchema"
+                                       :options="formOptions"
+                                       ref="secondTabForm"
+                                       >                                
+                   </vue-form-generator>
+                   
+                </tab-content>
+                <tab-content title="CUESTIONARIO DE PREEXISTENMCIAS"
+                             icon="ti-view-list-alt" :before-change="validateThirdTab">
+                 <vue-form-generator :model="model" 
+                                       :schema="thirdTabSchema"
+                                       :options="formOptions"
+                                       ref="thirdTabForm"
+                                       >                                
+                   </vue-form-generator>
+                   
+                </tab-content>
+
+                <tab-content title="CONTACTO DE EMERGENCIA"
+                icon="ti-headphone-alt" :before-change="validateSecondTab">
+                  <vue-form-generator :model="model" 
+                                        :schema="secondTabSchema"
+                                        :options="formOptions"
+                                        ref="secondTabForm"
+                                        >                                
+                    </vue-form-generator>
+                    
+                </tab-content>
+
+                <tab-content title="ELIJA SU PLAN DE PREVISION"
+                icon="ti-layout-list-thumb" :before-change="validateSecondTab">
+                    <vue-form-generator :model="model" 
+                                          :schema="secondTabSchema"
+                                          :options="formOptions"
+                                          ref="secondTabForm"
+                                          >                                
+                      </vue-form-generator>
+      
+   </tab-content> 
+                <tab-content title="Last step"
+                             icon="ti-check">
+                  <h4>Your json is ready!</h4>
+                  <div class="panel-body">
+                    <pre v-if="model" v-html="prettyJSON(model)"></pre>
+                  </div>
+                </tab-content>
+            </form-wizard>
+     </div>
+    </div>
+
+<script type="text/javascript">//<![CDATA[
+
+
+Vue.use(VueFormWizard)
+Vue.use(VueFormGenerator)
+new Vue({
+  el: '#app',
+  data: {
+    model: {
+      firstName: '',
+      lastName: '',
+      fechaNacimiento : '',
+      direccion: '',
+      estadoCivil: '',
+      email: '',
+      streetName: '',
+      streetNumber: '',
+      city: '',
+      country: ''
+    },
+    formOptions: {
+      validationErrorClass: "has-error",
+      validationSuccessClass: "has-success",
+      validateAfterChanged: true
+    },
+    firstTabSchema: {
+      fields: [{
+          type: "input",
+          inputType: "text",
+          label: "Nombres",
+          model: "firstName",
+          required: true,
+          validator: VueFormGenerator.validators.string,
+          styleClasses: 'col-xs-4'
+        },
+        {
+          type: "input",
+          inputType: "text",
+          label: "Apellidos",
+          model: "lastName",
+          required: true,
+          validator: VueFormGenerator.validators.string,
+          styleClasses: 'col-xs-4'
+        },
+        {
+          type: "input",
+          inputType: "date",
+          label: "Fecha de Nacimiento",
+          model: "fechaNacimiento",
+          required: true,
+          validator: VueFormGenerator.validators.date,
+          styleClasses: 'col-xs-4'
+        },
+        {
+          type: "input",
+          inputType: "text",
+          label: "Dirección",
+          model: "direccion",
+          required: true,
+          validator: VueFormGenerator.validators.string,
+          styleClasses: 'col-xs-8'
+        },
+        {
+          type: "select",
+          label: "Estado Civil",
+          model: "estadoCivil",
+          required: true,
+          validator: VueFormGenerator.validators.string,
+          values: ['Casado', 'Soltero', 'Viudo', 'Divorciado'],
+          styleClasses: 'col-xs-4'
+        },
+        {
+          type: "input",
+          inputType: "text",
+          label: "Ciudad",
+          model: "ciudad",
+          required: true,
+          validator: VueFormGenerator.validators.string,
+          styleClasses: 'col-xs-3'
+        },
+        {
+          type: "input",
+          inputType: "text",
+          label: "Provincia o Estado",
+          model: "provincia",
+          required: true,
+          validator: VueFormGenerator.validators.string,
+          styleClasses: 'col-xs-3'
+        },        
+        {
+          type: "input",
+          inputType: "text",
+          label: "Código Postal (si aplica)",
+          model: "codigoPostal",
+          required: false,
+          validator: VueFormGenerator.validators.string,
+          styleClasses: 'col-xs-3'
+        },        
+        {
+          type: "input",
+          inputType: "text",
+          label: "País de Residencia",
+          model: "paisResidencia",
+          required: true,
+          validator: VueFormGenerator.validators.string,
+          styleClasses: 'col-xs-3'
+        },
+        {
+          type: "input",
+          inputType: "text",
+          label: "Teléfono",
+          model: "telefono",
+          required: false,
+          validator: VueFormGenerator.validators.string,
+          styleClasses: 'col-xs-2'
+        },
+        {
+          type: "input",
+          inputType: "text",
+          label: "Celular",
+          model: "celular",
+          required: false,
+          validator: VueFormGenerator.validators.string,
+          styleClasses: 'col-xs-3'
+        },
+        {
+          type: "select",
+          label: "País de Origen",
+          model: "paisOrigen",
+          required: true,
+          validator: VueFormGenerator.validators.string,
+          values: ['Canada', 'Colombia', 'Mexico', 'Estados Unidos', 'Reino Unido', 'España','Romania', 'Germany'],
+          styleClasses: 'col-xs-3'
+        },
+        {
+          type: "input",
+          inputType: "text",
+          label: "Email",
+          model: "email",
+          required: true,
+          validator: VueFormGenerator.validators.email,
+          styleClasses: 'col-xs-4'
+        }
+      ]
+    },
+    secondTabSchema: {
+      fields: [{
+          type: "input",
+          inputType: "text",
+          label: "Nombre y Apellido",
+          model: "nombresApellidosBeneficiario",
+          required: true,
+          validator: VueFormGenerator.validators.string,
+          styleClasses: 'col-xs-9'
+        },
+        {
+          type: "select",
+          label: "Parentesco",
+          model: "parentescoBeneficiario",
+          required: true,
+          validator: VueFormGenerator.validators.string,
+          values: ['Padres', 'Esposo', 'Hijo', 'Hermano', 'Abuelo'],
+          styleClasses: 'col-xs-3'
+        },
+        {
+          type: "input",
+          inputType: "date",
+          label: "Fecha de Nacimiento",
+          model: "fechaNacimientoBenificiario",
+          required: true,
+          validator: VueFormGenerator.validators.date,
+          styleClasses: 'col-xs-3'
+        },
+
+        {
+          type: "input",
+          inputType: "number",
+          label: "Edad",
+          model: "edadBeneficiario",
+          required: true,
+          validator: VueFormGenerator.validators.number,
+          styleClasses: 'col-xs-3'
+        },
+        {
+          type: "select",
+          label: "País Residencia",
+          model: "paisResidenciaBeneficiacio",
+          required: true,
+          validator: VueFormGenerator.validators.string,
+          values: ['Canada', 'Colombia', 'Mexico', 'Estados Unidos', 'Reino Unido', 'España','Romania', 'Germany'],
+          styleClasses: 'col-xs-3'
+        },
+        {
+          type: "select",
+          label: "País de Origen",
+          model: "paisOrigenBeneficiario",
+          required: true,
+          validator: VueFormGenerator.validators.string,
+          values: ['Canada', 'Colombia', 'Mexico', 'Estados Unidos', 'Reino Unido', 'España','Romania', 'Germany'],
+          styleClasses: 'col-xs-3'
+        },
+      ]
+    },
+    thirdTabSchema: {
+      fields: [{
+          type: "input",
+          inputType: "text",
+          label: "¿Usted, o alguno de sus beneficiarios han sido diagnosticados con alguna enfermedad que involucre muerte inminente?",
+          model: "pregunta1",
+          required: false,
+          validator: VueFormGenerator.validators.string,
+          styleClasses: 'col-xs-9'
+        },
+        {
+          type: "checkbox",
+          label: "Status",
+          model: "status",
+          default: true
+        },
+        {
+          type: "input",
+          inputType: "text",
+          label: "¿Usted o alguno de sus beneficiarios están actualmente hospitalizados o en un asilo? (casa de cuidado a personas mayores de edad)",
+          model: "pregunta2",
+          required: false,
+          validator: VueFormGenerator.validators.string,
+          styleClasses: 'col-xs-9'
+        },
+        {
+          type: "input",
+          inputType: "text",
+          label: "¿Alguno de sus beneficiarios están actualmente privados de la libertad? (encarcelado)",
+          model: "pregunta3",
+          required: false,
+          validator: VueFormGenerator.validators.string,
+          styleClasses: 'col-xs-9'
+        },
+        {
+          type: "input",
+          inputType: "text",
+          label: "¿Usted, o alguno de sus beneficiarios han sido diagnosticados con sida, cancer, o ha requerido de dialisis o un transplante de organo en los pasados 3 años?",
+          model: "pregunta4",
+          required: false,
+          validator: VueFormGenerator.validators.string,
+          styleClasses: 'col-xs-9'
+        },
+      ]
+    }
+  },
+  methods: {
+    onComplete: function() {
+      alert('Yay. Done!');
+    },
+    validateFirstTab: function() {
+      return this.$refs.firstTabForm.validate();
+    },
+    validateSecondTab: function() {
+      return this.$refs.secondTabForm.validate();
+    },
+    validateThirdTab: function() {
+      return this.$refs.thirdTabForm.validate();
+    },
+
+    prettyJSON: function(json) {
+      if (json) {
+        json = JSON.stringify(json, undefined, 4);
+        json = json.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');
+        return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function(match) {
+          var cls = 'number';
+          if (/^"/.test(match)) {
+            if (/:$/.test(match)) {
+              cls = 'key';
+            } else {
+              cls = 'string';
+            }
+          } else if (/true|false/.test(match)) {
+            cls = 'boolean';
+          } else if (/null/.test(match)) {
+            cls = 'null';
+          }
+          return '<span class="' + cls + '">' + match + '</span>';
+        });
+      }
+    }
+  }
+})
+
+
+
+  //]]></script>
+
+  <script>
+    // tell the embed parent frame the height of the content
+    if (window.parent && window.parent.parent){
+      window.parent.parent.postMessage(["resultsFrame", {
+        height: document.body.getBoundingClientRect().height,
+        slug: "kpotwdma"
+      }], "*")
+    }
+
+    // always overwrite window.name, in case users try to set it manually
+    window.name = "result"
+  </script>
+
+
+
 
 </body></html>
