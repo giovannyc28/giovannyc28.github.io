@@ -17,6 +17,7 @@
       <script type="text/javascript" src="./js/vue-form-wizard.js"></script>
       <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
       <script type="text/javascript" src="./js/vfg.js"></script>
+      <script type="text/javascript" src="./js/vue-i18n.js"></script>
 
   <style id="compiled-css" type="text/css">
       pre {
@@ -30,7 +31,7 @@
     /* EOS */
   </style>
 
-  <script id="insert"></script>
+  <script ></script>
 
 
 </head>
@@ -73,22 +74,22 @@
                 </tab-content>
 
                 <tab-content title="CONTACTO DE EMERGENCIA"
-                icon="ti-headphone-alt" :before-change="validateSecondTab">
+                icon="ti-headphone-alt" :before-change="validateDatosContactoTab">
                   <vue-form-generator :model="model" 
-                                        :schema="secondTabSchema"
+                                        :schema="datosContacto"
                                         :options="formOptions"
-                                        ref="secondTabForm"
+                                        ref="datosContactoTabForm"
                                         >                                
                     </vue-form-generator>
                     
                 </tab-content>
 
                 <tab-content title="ELIJA SU PLAN DE PREVISION"
-                icon="ti-layout-list-thumb" :before-change="validateSecondTab">
+                icon="ti-layout-list-thumb" :before-change="validatePlanPrevisionTab">
                     <vue-form-generator :model="model" 
-                                          :schema="secondTabSchema"
+                                          :schema="planPrevision"
                                           :options="formOptions"
-                                          ref="secondTabForm"
+                                          ref="planPrevisionTabForm"
                                           >                                
                       </vue-form-generator>
       
@@ -118,12 +119,45 @@ new Vue({
       fechaNacimiento : '',
       direccion: '',
       estadoCivil: '',
+      ciudad: '',
+      provincia:'',
+      codigoPostal:'',
+      paisResidencia:'',
+      telefono:'',
+      celular:'',
+      paisOrigen:'',
       email: '',
-      streetName: '',
-      streetNumber: '',
-      city: '',
-      country: ''
+      nombresApellidosBeneficiario: '',
+      parentescoBeneficiario: '',
+      fechaNacimientoBenificiario: '',
+      edadBeneficiario: '',
+      paisResidenciaBeneficiacio:'',
+      paisOrigenBeneficiario:'',
+      pregunta1:'',
+      status1:'',
+      pregunta2:'',
+      status2:'',
+      pregunta3:'',
+      status3:'',
+      pregunta4:'',
+      status4:'',
+      pregunta4:'',
+      status5:'',
+      nombresApellidosContacto:'',
+      parentescoContacto:'',
+      direccionContacto:'',
+      ciudadContacto:'',
+      provinciaContacto:'',
+      codigoPostalContacto:'',
+      paisContacto:'',
+      telefonoContacto:'',
+      celularContacto:'',
+      emailContacto:'',
+      planSeleccionado:'',
+      costoPlan:'',
+      frecuenciaPagoPlan:'',
     },
+    
     formOptions: {
       validationErrorClass: "has-error",
       validationSuccessClass: "has-success",
@@ -305,6 +339,11 @@ new Vue({
           values: ['Canada', 'Colombia', 'Mexico', 'Estados Unidos', 'Reino Unido', 'España','Romania', 'Germany'],
           styleClasses: 'col-xs-3'
         },
+        {
+          type:'submit',
+          buttonText: '+',
+          styleClasses: 'col-xs-1'
+        },
       ]
     },
     thirdTabSchema: {
@@ -318,10 +357,14 @@ new Vue({
           styleClasses: 'col-xs-9'
         },
         {
-          type: "checkbox",
-          label: "Status",
-          model: "status",
-          default: true
+            type: "radios",
+            label: "",
+            model: "status1",
+            styleClasses: 'col-xs-2',
+            values: [
+                {name :"SI", value:'si'},
+                {name :"NO", value:'no'},
+            ]
         },
         {
           type: "input",
@@ -333,6 +376,16 @@ new Vue({
           styleClasses: 'col-xs-9'
         },
         {
+            type: "radios",
+            label: "",
+            model: "status2",
+            styleClasses: 'col-xs-2',
+            values: [
+                {name :"SI", value:'si'},
+                {name :"NO", value:'no'},
+            ]
+        },
+        {
           type: "input",
           inputType: "text",
           label: "¿Alguno de sus beneficiarios están actualmente privados de la libertad? (encarcelado)",
@@ -340,6 +393,16 @@ new Vue({
           required: false,
           validator: VueFormGenerator.validators.string,
           styleClasses: 'col-xs-9'
+        },
+        {
+            type: "radios",
+            label: "",
+            model: "status3",
+            styleClasses: 'col-xs-2',
+            values: [
+                {name :"SI", value:'si'},
+                {name :"NO", value:'no'},
+            ]
         },
         {
           type: "input",
@@ -350,8 +413,146 @@ new Vue({
           validator: VueFormGenerator.validators.string,
           styleClasses: 'col-xs-9'
         },
+        {
+            type: "radios",
+            label: "",
+            model: "status4",
+            styleClasses: 'col-xs-2',
+            values: [
+                {name :"SI", value:'si'},
+                {name :"NO", value:'no'},
+            ]
+        },
       ]
-    }
+    },
+    datosContacto: {
+      fields: [{
+          type: "input",
+          inputType: "text",
+          label: "Nombre y Apellido",
+          model: "nombresApellidosContacto",
+          required: true,
+          validator: VueFormGenerator.validators.string,
+          styleClasses: 'col-xs-9'
+        },
+        {
+          type: "select",
+          label: "Parentesco",
+          model: "parentescoContacto",
+          required: true,
+          validator: VueFormGenerator.validators.string,
+          values: ['Padres', 'Esposo', 'Hijo', 'Hermano', 'Abuelo'],
+          styleClasses: 'col-xs-3'
+        },
+        {
+          type: "input",
+          inputType: "text",
+          label: "Dirección",
+          model: "direccionContacto",
+          required: true,
+          validator: VueFormGenerator.validators.string,
+          styleClasses: 'col-xs-12'
+        },
+        {
+          type: "input",
+          inputType: "text",
+          label: "Ciudad",
+          model: "ciudadContacto",
+          required: true,
+          validator: VueFormGenerator.validators.string,
+          styleClasses: 'col-xs-3'
+        },
+        {
+          type: "input",
+          inputType: "text",
+          label: "Provincia",
+          model: "provinciaContacto",
+          required: true,
+          validator: VueFormGenerator.validators.string,
+          styleClasses: 'col-xs-3'
+        },
+        {
+          type: "input",
+          inputType: "text",
+          label: "Código Postal",
+          model: "codigoPostalContacto",
+          required: true,
+          validator: VueFormGenerator.validators.string,
+          styleClasses: 'col-xs-3'
+        },
+        {
+          type: "select",
+          label: "País",
+          model: "paisContacto",
+          required: true,
+          validator: VueFormGenerator.validators.string,
+          values: ['Canada', 'Colombia', 'Mexico', 'Estados Unidos', 'Reino Unido', 'España','Romania', 'Germany'],
+          styleClasses: 'col-xs-3'
+        },
+        {
+          type: "input",
+          inputType: "text",
+          label: "Teléfono",
+          model: "telefonoContacto",
+          required: false,
+          validator: VueFormGenerator.validators.string,
+          styleClasses: 'col-xs-4'
+        },
+        {
+          type: "input",
+          inputType: "text",
+          label: "Celular",
+          model: "celularContacto",
+          required: false,
+          validator: VueFormGenerator.validators.string,
+          styleClasses: 'col-xs-4'
+        },
+        {
+          type: "input",
+          inputType: "text",
+          label: "Correo Electrónico",
+          model: "emailContacto",
+          required: true,
+          validator: VueFormGenerator.validators.email,
+          styleClasses: 'col-xs-4'
+        },
+      ]
+    },
+    planPrevision: {
+      fields: [
+        {
+          type: "select",
+          label: "Nombre del Plan",
+          model: "planSeleccionado",
+          required: true,
+          validator: VueFormGenerator.validators.string,
+          values: ['Plan 1', 'Plan 2', 'Plan 3', 'Plan 4', 'Plan 5'],
+          styleClasses: 'col-xs-4'
+        },
+        {
+          type: "input",
+          inputType: "text",
+          label: "Costo Anual",
+          model: "costoPlan",
+          required: true,
+          validator: VueFormGenerator.validators.string,
+          styleClasses: 'col-xs-4'
+        },
+        {
+            type: "radios",
+            label: "Modalidad de Pago",
+            model: "frecuenciaPagoPlan",
+            styleClasses: 'col-xs-6',
+            values: [
+                {name :"Anual", value:'12'},
+                {name :"Semestral", value:'6'},
+                {name :"Trimestral", value:'3'},
+                {name :"Mensual", value:'1'},
+            ]
+        },
+        
+      ]
+    },
   },
   methods: {
     onComplete: function() {
@@ -365,6 +566,12 @@ new Vue({
     },
     validateThirdTab: function() {
       return this.$refs.thirdTabForm.validate();
+    },
+    validateDatosContactoTab: function() {
+      return this.$refs.datosContactoTabForm.validate();
+    },
+    validatePlanPrevisionTab: function() {
+      return this.$refs.planPrevisionTabForm.validate();
     },
 
     prettyJSON: function(json) {
@@ -406,6 +613,8 @@ new Vue({
 
     // always overwrite window.name, in case users try to set it manually
     window.name = "result"
+
+
   </script>
 
 

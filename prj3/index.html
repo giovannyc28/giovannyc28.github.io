@@ -1,0 +1,1194 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+</head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+
+
+<style>
+    .bgProgress1 {
+        background-color: #101D42!important
+    }
+    
+    .bgProgress2 {
+        background-color: #FFBC42!important
+    }
+    
+    .bgProgress3 {
+        background-color: #27FB6B!important
+    }
+    
+    .bgProgress4 {
+        background-color: #320A28!important
+    }
+    
+    .bgProgress5 {
+        background-color: #6F1D1B!important
+    }
+    
+    .bgProgress6 {
+        background-color: #FE5D26!important
+    }
+    
+    .bgProgress7 {
+        background: color #101d42;
+        !important
+    }
+    
+    .container {
+        display: flex;
+        width: 100%;
+        padding: 0;
+    }
+    
+    .choice {
+        height: 69vh;
+        box-sizing: border-box;
+        padding: 0;
+        overflow: auto;
+        float: left;
+        align-items: center;
+        transition: width 0.0s;
+        border-radius: 3px;
+    }
+    
+    .expand {
+        width: 100%;
+    }
+    
+    .unset {
+        width: 10%;
+        background-color: rgb(255, 255, 255) !important;
+    }
+    
+    .small {
+        width: 0%;
+        background-color: rgb(255, 255, 255) !important;
+    }
+    
+    .small>div {
+        opacity: 0;
+    }
+    
+    .unset>div>p {
+        opacity: 0;
+    }
+    
+    .expand>div {
+        transition-delay: 0ms;
+        opacity: 1;
+    }
+    
+    .fa {
+        position: relative;
+        z-index: 2;
+        top: -35px;
+        left: 50%;
+    }
+    
+    .btn-info.active {
+        background-color: limegreen;
+    }
+    
+    .wrapper {
+        position: relative;
+        width: 400px;
+        height: 100px;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    
+    .signature-pad {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 400px;
+        height: 100px;
+        background-color: white;
+        border: 1px solid #101d42;
+    }
+</style>
+</head>
+
+<body>
+
+    <div class="fixed-top">
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark p-4">
+                <h5 class="text-white h4">Collapsed content</h5>
+                <span class="text-muted">Toggleable via the navbar brand.</span>
+            </div>
+        </div>
+        <nav class="navbar navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </nav>
+    </div>
+
+    <!--<div class="shadow-lg p-3 mb-5 bg-white rounded container mt-5 justify-content-center"></div>-->
+
+    <div class="progress mt-5 justify-content-center" style="height: 55px;">
+        <div id='pb1' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-person-check-fill" style="font-size: 2rem;"></i></div>
+        <div id='pb2' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-people-fill" style="font-size: 2rem;"></i></div>
+        <div id='pb3' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-ui-checks" style="font-size: 2rem;"></i></div>
+        <div id='pb4' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-phone-vibrate-fill" style="font-size: 2rem;"></i></div>
+        <div id='pb5' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-box-seam" style="font-size: 2rem;"></i></div>
+        <div id='pb6' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-currency-exchange" style="font-size: 2rem;"></i></div>
+        <div id='pb7' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-card-text" style="font-size: 2rem;"></i></div>
+    </div>
+
+    <div id='secciones' class="shadow-sm p-1 mb-5 bg-white rounded container mt-1 justify-content-center">
+
+        <div id='seccion1' class="choice unset justify-content-center">
+
+            <div class="card-body">
+                <!-- Title -->
+                <h5 class="card-title"><a>INFORMACION DEL CONTRATANTE</a></h5>
+                <form id='form1' class="needs-validation" novalidate>
+                    <div class="form-row">
+                        <div class="form-group   col-md-4">
+                            <label for="nombres">Nombres</label>
+                            <input type="text" class="form-control" id="nombres" required>
+                        </div>
+                        <div class="form-group   col-md-4">
+                            <label for="apellidos">Apellidos</label>
+                            <input type="text" class="form-control" id="apellidos" required>
+                        </div>
+                        <div class="form-group   col-md-4">
+                            <label for="fechaNacimiento">Fecha Nacimiento</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="fechaNacimiento" data-date-end-date="0d" required>
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group   col-md-8">
+                            <label for="direccion">Dirección</label>
+                            <input type="text" class="form-control" id="direccion" required>
+                        </div>
+                        <div class="form-group   col-md-4">
+                            <label for="estadoCivil">Estado Civil</label>
+                            <select id="estadoCivil" class="form-control" required>
+                      <option selected disabled value>Selecciona Uno</option>
+                      <option>Casado(a)</option>
+                      <option>Divorciado(a)</option>
+                      <option>Soltero(a)</option>
+                      <option>Viudo(a)</option>
+                      <option>Union Libre</option>
+                    </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group   col-md-3">
+                            <label for="ciudad">Ciudad</label>
+                            <input type="text" class="form-control" id="ciudad" required>
+                        </div>
+                        <div class="form-group   col-md-3">
+                            <label for="provincia">Provincia</label>
+                            <input type="text" class="form-control" id="provincia" required>
+                        </div>
+                        <div class="form-group   col-md-3">
+                            <label for="codigoPostal">Codigo Postal</label>
+                            <input type="text" class="form-control" id="codigoPostal" required>
+                        </div>
+                        <div class="form-group   col-md-3">
+                            <label for="paisResidencia">País Residencia</label>
+                            <select id="paisResidencia" class="form-control" required>
+                      <option selected disabled value>Selecciona Uno</option>
+                      <option>Argentina</option>
+                      <option>Belice</option>
+                      <option>Bolivia</option>
+                      <option>Brasil</option>
+                      <option>Chile</option>
+                      <option>Colombia</option>
+                      <option>Costa Rica</option>
+                      <option>Cuba</option>
+                      <option>Ecuador</option>
+                      <option>El Salvador</option>
+                      <option>Estados Unidos</option>
+                      <option>Guatemala</option>
+                      <option>Haiti</option>
+                      <option>Honduras</option>
+                      <option>Mexico</option>
+                      <option>Nicaragua</option>
+                      <option>Panamá</option>
+                      <option>Paraguay</option>
+                      <option>Péru</option>
+                      <option>Republica Dominicana</option>
+                      <option>Uruguay</option>
+                      <option>Venezuela</option>
+                    </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group   col-md-2">
+                            <label for="telefono">Telefono</label>
+                            <input type="text" class="form-control" id="telefono" required>
+                        </div>
+                        <div class="form-group   col-md-3">
+                            <label for="celular">Celular</label>
+                            <input type="text" class="form-control" id="celular" required>
+                        </div>
+                        <div class="form-group   col-md-3">
+                            <label for="paisOrigen">País Origen</label>
+                            <select id="paisOrigen" class="form-control" required>
+                      <option selected disabled value>Selecciona Uno</option>
+                      <option>Argentina</option>
+                      <option>Belice</option>
+                      <option>Bolivia</option>
+                      <option>Brasil</option>
+                      <option>Chile</option>
+                      <option>Colombia</option>
+                      <option>Costa Rica</option>
+                      <option>Cuba</option>
+                      <option>Ecuador</option>
+                      <option>El Salvador</option>
+                      <option>Estados Unidos</option>
+                      <option>Guatemala</option>
+                      <option>Haiti</option>
+                      <option>Honduras</option>
+                      <option>Mexico</option>
+                      <option>Nicaragua</option>
+                      <option>Panamá</option>
+                      <option>Paraguay</option>
+                      <option>Péru</option>
+                      <option>Republica Dominicana</option>
+                      <option>Uruguay</option>
+                      <option>Venezuela</option>
+                    </select>
+                        </div>
+
+                        <div class="form-group   col-md-4">
+                            <label for="email">Email</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">@</span>
+                                </div>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <div id='seccion2' class="choice unset justify-content-center">
+
+            <div class="card-body">
+                <!-- Title -->
+                <h5 class="card-title"><a>DATOS DE LOS BENEFICIARIOS</a></h5>
+                <!-- Text -->
+                <form id='form2' id=" form2" class="needs-validation" novalidate>
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            <label for="benNombresApellidos">Nombres y Apellidos</label>
+                            <input type="text" class="form-control" id="benNombresApellidos" name="benNombresApellidos" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="benParentesco">Parentesco</label>
+                            <select id="benPaisParentesco" name="benPaisParentesco" class="form-control" required>
+                    <option selected disabled value>Selecciona Uno</option>
+                    <option>Titular</option>
+                    <option>Conyuge</option>
+                    <option>Hermano(a)</option>
+                    <option>Hijo(a)</option>
+                    <option>Madre</option>
+                    <option>Nieto(a)</option>
+                    <option>Padre</option>
+                    <option>Suegro(a)</option>
+                  </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="benFechaNacimiento">Fecha Nacimiento</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="benFechaNacimiento" name="benFechaNacimiento" data-date-end-date="0d" required>
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="benEdad">Edad</label>
+                            <input type="text" class="form-control" id="benEdad" name="benEdad" required readonly>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="benPaisResidencia">País Residencia</label>
+                            <select id="benPaisResidencia" name="benPaisResidencia" class="form-control" required>
+                    <option selected disabled value>Selecciona Uno</option>
+                    <option>Argentina</option>
+                    <option>Belice</option>
+                    <option>Bolivia</option>
+                    <option>Brasil</option>
+                    <option>Chile</option>
+                    <option>Colombia</option>
+                    <option>Costa Rica</option>
+                    <option>Cuba</option>
+                    <option>Ecuador</option>
+                    <option>El Salvador</option>
+                    <option>Estados Unidos</option>
+                    <option>Guatemala</option>
+                    <option>Haiti</option>
+                    <option>Honduras</option>
+                    <option>Mexico</option>
+                    <option>Nicaragua</option>
+                    <option>Panamá</option>
+                    <option>Paraguay</option>
+                    <option>Péru</option>
+                    <option>Republica Dominicana</option>
+                    <option>Uruguay</option>
+                    <option>Venezuela</option>
+                  </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="benPaisOrigen">País Origen</label>
+                            <select id="benPaisOrigen" name="benPaisOrigen" class="form-control" required>
+                    <option selected disabled value>Selecciona Uno</option>
+                    <option>Argentina</option>
+                    <option>Belice</option>
+                    <option>Bolivia</option>
+                    <option>Brasil</option>
+                    <option>Chile</option>
+                    <option>Colombia</option>
+                    <option>Costa Rica</option>
+                    <option>Cuba</option>
+                    <option>Ecuador</option>
+                    <option>El Salvador</option>
+                    <option>Estados Unidos</option>
+                    <option>Guatemala</option>
+                    <option>Haiti</option>
+                    <option>Honduras</option>
+                    <option>Mexico</option>
+                    <option>Nicaragua</option>
+                    <option>Panamá</option>
+                    <option>Paraguay</option>
+                    <option>Péru</option>
+                    <option>Republica Dominicana</option>
+                    <option>Uruguay</option>
+                    <option>Venezuela</option>
+                  </select>
+                        </div>
+                    </div>
+
+                    <button id='addBeneficiario' type="button" class="btn btn-primary">Adicionar</button>
+                    <button id='updateBeneficiario' type="button" class="btn btn-primary">Actualizar</button>
+                    <button id="cancelarUpdateBeneficiario" type="button" class="btn btn-secondary">Cancelar</button>
+                    <div class="table-responsive-sm">
+                        <table id="listaBeneficiarios" class="table table-hover table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nombres y Apellidos</th>
+                                    <th scope="col">Parentesco</th>
+                                    <th scope="col">Fecha Nacimiento</th>
+                                    <th scope="col">Edad</th>
+                                    <th scope="col">País Residencia</th>
+                                    <th scope="col">País Origen</th>
+                                    <th scope="col">Editar</th>
+                                    <th scope="col">Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <div id='seccion3' class="choice unset justify-content-center">
+            <div class="card-body">
+                <!-- Title -->
+                <h5 class="card-title"><a>CUESTIONARIO DE PREEXISTENCIAS</a></h5>
+                <form id='form3' class="needs-validation" novalidate>
+                    <div class="form-row">
+                        <div class="form-group col-md-11">
+                            <label for="strPregunta1">¿Usted, o alguno de sus beneficiarios han sido diagnosticados con alguna enfermedad que involucre muerte inminente?</label>
+                        </div>
+                        <div class="form-group col-md-1">
+                            <input id='Pregunta1' onChange='respuestaCheck(1, this)' type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-11">
+                            <select id='benPregunta1' class="selectpicker" multiple title="Selecciona ..." data-width="100%" disabled required>
+                          
+                        </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-11">
+                            <label for="strPregunta2">¿Usted o alguno de sus beneficiarios están actualmente hospitalizados o en un asilo? (casa de cuidado a personas mayores de edad)</label>
+                        </div>
+                        <div class="form-group col-md-1">
+                            <input id='Pregunta2' onChange='respuestaCheck(2, this)' type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-11">
+                            <select id='benPregunta2' class="selectpicker" multiple title="Selecciona ..." data-width="100%" disabled required>
+                          
+                        </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-11">
+                            <label for="strPregunta3">¿Alguno de sus beneficiarios están actualmente privados de la libertad? (encarcelado)</label>
+                        </div>
+                        <div class="form-group col-md-1">
+                            <input id='Pregunta3' onChange='respuestaCheck(3, this)' type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-11">
+                            <select id='benPregunta3' class="selectpicker" multiple title="Selecciona ..." data-width="100%" disabled required>
+                          
+                        </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-11">
+                            <label for="strPregunta4">¿Usted, o alguno de sus beneficiarios han sido diagnosticados con sida, cancer, o ha requerido de dialisis o un transplante de organo en los pasados 3 años?</label>
+                        </div>
+                        <div class="form-group col-md-1">
+                            <input id='Pregunta4' onChange='respuestaCheck(4, this)' type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-11">
+                            <select id='benPregunta4' class="selectpicker" multiple title="Selecciona ..." data-width="100%" disabled required>
+                          
+                        </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <div id='seccion4' class="choice unset justify-content-center">
+
+            <div class="card-body">
+                <!-- Title -->
+                <h5 class="card-title"><a>CONTACTO DE EMERGENCIA</a></h5>
+                <form id="form4" class="needs-validation" novalidate>
+                    <div class="form-row">
+                        <div class="form-group   col-md-8">
+                            <label for="cteNombresApellidos">Nombres y Apellidos</label>
+                            <input type="text" class="form-control" id="benNombresApellidos" name="benNombresApellidos" required>
+                        </div>
+                        <div class="form-group   col-md-4">
+                            <label for="cteParentesco">Parentesco</label>
+                            <select id="cteParentesco" name="cteParentesco" class="form-control" required>
+                                <option selected disabled value>Selecciona Uno</option>
+                                <option>Titular</option>
+                                <option>Conyuge</option>
+                                <option>Hermano(a)</option>
+                                <option>Hijo(a)</option>
+                                <option>Madre</option>
+                                <option>Nieto(a)</option>
+                                <option>Padre</option>
+                                <option>Suegro(a)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group   col-md-12">
+                            <label for="cteDireccion">Dirección</label>
+                            <input type="text" class="form-control" id="cteDireccion" name='cteDireccion' required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group   col-md-3">
+                            <label for="cteCiudad">Ciudad</label>
+                            <input type="text" class="form-control" id="cteCiudad" name="cteCiudad" required>
+                        </div>
+                        <div class="form-group   col-md-3">
+                            <label for="cteProvincia">Provincia o Estado</label>
+                            <input type="text" class="form-control" id="cteProvincia" name="cteProvincia" required>
+                        </div>
+                        <div class="form-group   col-md-3">
+                            <label for="cteCodigoPostal">Codigo Postal(si aplica)</label>
+                            <input type="text" class="form-control" id="cteCodigoPostal" name="cteCodigoPostal" required>
+                        </div>
+                        <div class="form-group   col-md-3">
+                            <label for="ctePais">País</label>
+                            <select id="ctePais" name="ctePais" class="form-control" required>
+                              <option selected disabled value>Selecciona Uno</option>
+                              <option>Argentina</option>
+                              <option>Belice</option>
+                              <option>Bolivia</option>
+                              <option>Brasil</option>
+                              <option>Chile</option>
+                              <option>Colombia</option>
+                              <option>Costa Rica</option>
+                              <option>Cuba</option>
+                              <option>Ecuador</option>
+                              <option>El Salvador</option>
+                              <option>Estados Unidos</option>
+                              <option>Guatemala</option>
+                              <option>Haiti</option>
+                              <option>Honduras</option>
+                              <option>Mexico</option>
+                              <option>Nicaragua</option>
+                              <option>Panamá</option>
+                              <option>Paraguay</option>
+                              <option>Péru</option>
+                              <option>Republica Dominicana</option>
+                              <option>Uruguay</option>
+                              <option>Venezuela</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group   col-md-3">
+                            <label for="cteTelefono">telefono</label>
+                            <input type="text" class="form-control" id="cteTelefono" name="cteTelefono" required>
+                        </div>
+                        <div class="form-group   col-md-3">
+                            <label for="cteCelular">Celular</label>
+                            <input type="text" class="form-control" id="cteCelular" name="cteCelular" required>
+                        </div>
+                        <div class="form-group   col-md-6">
+                            <label for="cteEmail">Correo Electrónico</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">@</span>
+                                </div>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id='seccion5' class="choice unset justify-content-center">
+
+            <div class="card-body">
+                <!-- Title -->
+                <h5 class="card-title"><a>ELIJA SU PLAN DE PREVISIÓN</a></h5>
+                <!-- Text -->
+                <form id="form5" class="needs-validation" novalidate>
+                    <div class="form-row">
+                        <div class="form-group   col-md-4">
+                            <label for="planº">Nombre del plan</label>
+                            <select id="plan" name="plan" class="form-control" required>
+                              <option selected disabled value>Selecciona Uno</option>
+                              <option>Elite</option>
+                              <option>Prestige</option>
+                              <option>Green</option>
+                              <option>Preven</option>
+                              <option>Previsur</option>
+                              <option>Previcen</option>
+                              <option>ReNaser Classic G4</option>
+                              <option>ReNaser Classic G8</option>
+                          </select>
+                        </div>
+                        <div class="form-group   col-md-3">
+                            <label for="planValor">Costo Anual</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">USD$</span>
+                                </div>
+                                <input id="planValor" name="planValor" class="form-control" data-inputmask="'alias': 'decimal', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'" style="text-align: right;">
+                            </div>
+
+                        </div>
+                        <div class="form-group   col-md-5">
+                            <label for="planPeriodo">Modalidad de pago</label>
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-outline-secondary active">
+                                <input type="radio" name="options" id="option1" > Anual
+                              </label>
+                                <label class="btn btn-outline-secondary">
+                                <input type="radio" name="options" id="option2"> Semestral
+                              </label>
+                                <label class="btn btn-outline-secondary">
+                                <input type="radio" name="options" id="option3"> Trimestral
+                              </label>
+                                <label class="btn btn-outline-secondary">
+                                <input type="radio" name="options" id="option4"> Mensual
+                              </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <div id='seccion6' class="choice unset justify-content-center">
+
+            <div class="card-body">
+                <!-- Title -->
+                <h5 class="card-title"><a>INFORMACIÓN DE PAGO</a></h5>
+                <form id="form6" class="needs-validation" novalidate>
+                    <div class="form-row">
+                        <div class="form-group   col-md-5">
+                            <label for="nombretc">Nombre (como aparece en la tarjeta)</label>
+                            <input type="text" class="form-control" id="nombretc" name="nombretc" required>
+                        </div>
+                        <div class="form-group   col-md-4">
+                            <label for="numeroTc">Número de la Tarjeta</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">#</span>
+                                </div>
+                                <input id="numeroTc" name="numeroTc" class="form-control" data-inputmask="'mask': '9999 9999 9999 9999'" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group   col-md-3">
+                            <label for="valorTc">Costo Anual</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">USD$</span>
+                                </div>
+                                <input id="valorTc" name="valorTc" class="form-control" data-inputmask="'alias': 'decimal', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'" style="text-align: right;" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group   col-md-5">
+                            <label for="franquiciaCT">Franquicia Tarjeta de Credito</label>
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-outline-secondary active">
+                                <input type="radio" name="franquiciaCT" id="option1" > 
+                                  <span style="font-size: 2em; color:#eb001b;">
+                                    <i class="fab fa-cc-mastercard"></i>
+                                  </span>
+                              </label>
+                                <label class="btn btn-outline-secondary">
+                                <input type="radio" name="franquiciaCT" id="option2"> 
+                                  <span style="font-size: 2em; color: #172274;">
+                                    <i class="fab fa-cc-visa"></i>
+                                  </span>
+                              </label>
+                                <label class="btn btn-outline-secondary">
+                                <input type="radio" name="franquiciaCT" id="option3">
+                                  <span style="font-size: 2em; color: #629f86;">
+                                    <i class="fab fa-cc-amex"></i>
+                                  </span>
+                              </label>
+                                <label class="btn btn-outline-secondary">
+                                <span style="font-size: 2em; color: #E55c20;">
+                                  <input type="radio" name="franquiciaCT" id="option4"> <i class="fab fa-cc-discover"></i>
+                                </span>
+                              </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group   col-md-3">
+                            <label for="expiraTC">Fecha Expira</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="expiraTC" data-date-start-date="0d" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group   col-md-1">
+                            <label for="numeroTc">CVV</label>
+                            <input id="numeroTc" name="numeroTc" class="form-control" data-inputmask="'mask': '999'" required>
+                        </div>
+                        <div class="form-group   col-md-3">
+                            <label for="fechaDebito">Fecha a Debitar</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="fechaDebito" data-date-start-date="0d" required>
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="p-2 bg-secondary text-white">Información de la tarjeta (Donde recibe el estado de cuenta)</p>
+                    <p class="p-2 bg-white">Por favor indique si la dirección es la misma que el contratante
+                        <input id='Pregunta1' onChange='respuestaCheck(1, this)' type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">
+                    </p>
+                    <div class="form-row">
+                        <div class="form-group   col-md-12">
+                            <label for="cteDireccion">Dirección</label>
+                            <input type="text" class="form-control" id="cteDireccion" name='cteDireccion' required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group   col-md-3">
+                            <label for="cteCiudad">Ciudad</label>
+                            <input type="text" class="form-control" id="cteCiudad" name="cteCiudad" required>
+                        </div>
+                        <div class="form-group   col-md-3">
+                            <label for="cteProvincia">Provincia o Estado</label>
+                            <input type="text" class="form-control" id="cteProvincia" name="cteProvincia" required>
+                        </div>
+                        <div class="form-group   col-md-3">
+                            <label for="cteCodigoPostal">Codigo Postal(si aplica)</label>
+                            <input type="text" class="form-control" id="cteCodigoPostal" name="cteCodigoPostal" required>
+                        </div>
+                        <div class="form-group   col-md-3">
+                            <label for="ctePais">País</label>
+                            <select id="ctePais" name="ctePais" class="form-control" required>
+                          <option selected disabled value>Selecciona Uno</option>
+                          <option>Argentina</option>
+                          <option>Belice</option>
+                          <option>Bolivia</option>
+                          <option>Brasil</option>
+                          <option>Chile</option>
+                          <option>Colombia</option>
+                          <option>Costa Rica</option>
+                          <option>Cuba</option>
+                          <option>Ecuador</option>
+                          <option>El Salvador</option>
+                          <option>Estados Unidos</option>
+                          <option>Guatemala</option>
+                          <option>Haiti</option>
+                          <option>Honduras</option>
+                          <option>Mexico</option>
+                          <option>Nicaragua</option>
+                          <option>Panamá</option>
+                          <option>Paraguay</option>
+                          <option>Péru</option>
+                          <option>Republica Dominicana</option>
+                          <option>Uruguay</option>
+                          <option>Venezuela</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group   col-md-3">
+                            <label for="cteTelefono">telefono</label>
+                            <input type="text" class="form-control" id="cteTelefono" name="cteTelefono" required>
+                        </div>
+                        <div class="form-group   col-md-3">
+                            <label for="cteCelular">Celular</label>
+                            <input type="text" class="form-control" id="cteCelular" name="cteCelular" required>
+                        </div>
+                        <div class="form-group   col-md-6">
+                            <label for="cteEmail">Correo Electrónico</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">@</span>
+                                </div>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group   col-md-6">
+                            <label for="cteCelular"><p style="font-size: 0.7em;" class="p-2 bg-secondary text-white">Por medio de la presente, declaro y afirmo que la información contenida en este formulario es verdadera y correcta en el mejor de mi entendimiento y acepto que es de mi responsabilidad el informar cualquier cambio inmediatamente. Entiendo que en el caso de que esta información sea falsa, incorrecta o engañosa pudiese causar la perdida de los beneficios tanto para mi y/o para los beneficiarios del plan.</p></label>
+                        </div>
+                        <div class="form-group   col-md-6">
+                            <div class="wrapper">
+                                <canvas id="signature-pad" class="signature-pad" width=400 height=100></canvas>
+                            </div>
+                            <button class="btn btn-primary" id="clear">Limpiar</button>
+                        </div>
+                    </div>
+            </div>
+            </form>
+        </div>
+
+        <div id='seccion7' class="choice unset justify-content-center">
+
+            <div class="card-body">
+                <!-- Title -->
+                <h5 class="card-title"><a>OBSERVACIONES</a></h5>
+                <textarea class="form-control " id="validationTextarea" placeholder="" required></textarea>
+            </div>
+        </div>
+
+    </div>
+
+
+    </div>
+
+    <div class="card-footer text-muted text-center">
+        <button id='previous' class="btn btn-primary">ANTERIOR</button>
+        <button id='next' class="btn btn-primary">SIGUIENTE</button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="confirmacionOpcion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <div class="modal-body">
+                    Deseas continuar?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="modal-btn-no" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" id="modal-btn-si" class="btn btn-primary">Continuar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.es.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <script type='text/javascript' src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+    -->
+</body>
+
+<script>
+    var seccionInicial = 1;
+    /*$(".choice").removeClass("expand unset ");
+    $(".choice").addClass("small");
+    $("#seccion"+seccionInicial).removeClass("small");
+    $("#seccion"+seccionInicial).addClass("expand");
+    $("#previous").prop('disabled', true);
+
+    $(".choice").on("click", function(){
+    console.log("test");
+    $(".choice").removeClass("expand unset ");
+    $(".choice").addClass("small");
+    $(this).removeClass("small");
+    $(this).addClass("expand");
+    })*/
+    $('form').hide()
+    $(".choice").removeClass("expand unset ");
+    $(".choice").addClass("small");
+    $("#seccion1").removeClass("small");
+    $("#seccion1").addClass("expand");
+    $('form').show()
+    $('#updateBeneficiario').hide();
+    $('#cancelarUpdateBeneficiario').hide();
+
+    $(document).ready(function() {
+        $(":input").inputmask();
+        $('select').selectpicker();
+        $("#previous").prop('disabled', true);
+    });
+
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+        $('.selectpicker').selectpicker('mobile');
+    }
+
+
+    $("#next").on("click", function() {
+
+        $('#form' + seccionInicial).addClass('was-validated');
+        //if ($('#form' + seccionInicial)[0].checkValidity() === true && seccionInicial != 2) {
+        console.log(seccionInicial);
+        $('#pb' + seccionInicial).removeClass("bg-transparent");
+        $('#pb' + seccionInicial).addClass("bgProgress" + seccionInicial);
+        //$("#pb"+seccionInicial).attr('aria-valuenow', 10).css('width', 10+'%');
+        if (seccionInicial >= 1 && seccionInicial < $(".choice").length) {
+            seccionInicial++;
+            $("#previous").prop('disabled', false);
+        } else
+            $("#next").prop('disabled', true);
+        //seccionInicial = 1;
+
+
+        $(".choice").removeClass("expand unset ");
+        $(".choice").addClass("small");
+        $("#seccion" + seccionInicial).removeClass("small");
+        $("#seccion" + seccionInicial).addClass("expand");
+        //$("#pb"+seccionInicial).attr('aria-valuenow', 10).css('width', 10+'%');
+        //}
+
+    })
+
+    $("#previous").on("click", function() {
+        console.log("test");
+        console.log(seccionInicial);
+        $('#pb' + seccionInicial).removeClass("bgProgress" + seccionInicial);
+        $('#pb' + seccionInicial).addClass("bg-transparent");
+        if (seccionInicial > 1 && seccionInicial < $(".choice").length + 1) {
+            seccionInicial--;
+            $("#next").prop('disabled', false);
+        } else
+            $("#previous").prop('disabled', true);
+        //seccionInicial = 1;
+        // $("#pb"+seccionInicial).attr('aria-valuenow', 0).css('width', 0+'%');
+        $(".choice").removeClass("expand unset ");
+        $(".choice").addClass("small");
+        $("#seccion" + seccionInicial).removeClass("small");
+        $("#seccion" + seccionInicial).addClass("expand");
+
+    })
+    $('#fechaNacimiento').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        language: "es",
+        orientation: "bottom auto",
+    });
+    $('#fechaDebito').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        language: "es",
+        orientation: "bottom auto",
+    });
+
+
+    $("#expiraTC").datepicker({
+        format: "mm-yyyy",
+        startView: "months",
+        minViewMode: "months",
+        language: "es",
+    });
+
+    $('#fechaNacimiento').datepicker("setDate", new Date());
+
+    $('#benFechaNacimiento').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        language: "es",
+        orientation: "bottom auto",
+    });
+    $('#benFechaNacimiento').datepicker("setDate", new Date());
+
+
+    $("#benFechaNacimiento").change(function() {
+        var today = new Date();
+        var birthDate = new Date($(this).datepicker('getDate'));
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        console.log(age)
+        return $('#benEdad').val(age);
+    });
+
+    function GetAge(birthDate) {
+        var today = new Date();
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        return age;
+    }
+
+
+
+
+    var cantBeneficiarios = 0;
+    var idTablaGlobal;
+    var arrayBeneficiarios = [];
+    $("#addBeneficiario").on("click", function() {
+        $('# form2').addClass('was-validated');
+        if ($('# form2')[0].checkValidity() === true) {
+            var serialForm = ($('# form2').serializeArray());
+            strHtmlTable = '';
+            arrayLinea = []
+            serialForm.forEach(function(element) {
+                console.log(element);
+                strHtmlTable = strHtmlTable + '<td>' + element['value'] + '</td>';
+                arrayLinea.push(element['value']);
+                console.log(arrayLinea);
+            });
+            arrayBeneficiarios["'" + cantBeneficiarios + "'"] = [];
+            arrayBeneficiarios["'" + cantBeneficiarios + "'"] = arrayLinea;
+            strHtmlTable = '<tr id="trBen_' + cantBeneficiarios + '">' + strHtmlTable + '<td><button type="button" onClick="editarBen(' + cantBeneficiarios + ')" class="btn btn-info"><i class="bi bi-pen-fill"></i></button></td><td><button type="button" class="btn btn-danger" onClick="quitarBen(' + cantBeneficiarios + ')"><i class="bi bi-trash-fill"></i></button></td></tr>';
+            $('[id^=benPregunta]').append('<option value=' + cantBeneficiarios + '>' + arrayLinea[0] + '</option>');
+            $('[id^=benPregunta]').selectpicker('refresh');
+            $("#listaBeneficiarios > tbody").append(strHtmlTable);
+            console.log(strHtmlTable);
+            $('# form2')[0].reset();
+            $('# form2').removeClass('was-validated');
+            cantBeneficiarios++;
+
+        }
+    });
+
+    $("#updateBeneficiario").on("click", function() {
+        $('# form2').addClass('was-validated');
+        if ($('# form2')[0].checkValidity() === true) {
+            var serialForm = ($('# form2').serializeArray());
+            strHtmlTable = '';
+            arrayLinea = []
+            serialForm.forEach(function(element) {
+                console.log(element);
+                strHtmlTable = strHtmlTable + '<td>' + element['value'] + '</td>';
+                arrayLinea.push(element['value']);
+                console.log(arrayLinea);
+            });
+            arrayBeneficiarios["'" + idTablaGlobal + "'"] = [];
+            arrayBeneficiarios["'" + idTablaGlobal + "'"] = arrayLinea;
+            $('#listaBeneficiarios > tbody #trBen_' + idTablaGlobal).html('');
+            $('#listaBeneficiarios > tbody #trBen_' + idTablaGlobal).html(strHtmlTable + '<td><button type="button" onClick="editarBen(' + idTablaGlobal + ')" class="btn btn-info"><i class="bi bi-pen-fill"></i></button></td><td><button type="button" class="btn btn-danger" onClick="quitarBen(' + idTablaGlobal + ')"><i class="bi bi-trash-fill"></i></button></td>');
+            $("option[value=optionvalue]").html('New text');
+            $('[id^=benPregunta] option[value=' + idTablaGlobal + ']').html(arrayLinea[0]);
+            $('[id^=benPregunta]').selectpicker('refresh');
+            console.log(strHtmlTable);
+            $('#addBeneficiario').show();
+            $('#updateBeneficiario').hide();
+            $('# form2')[0].reset();
+            $('# form2').removeClass('was-validated');
+            $('#cancelarUpdateBeneficiario').hide();
+        }
+    });
+
+    function editarBen(idTabla) {
+        console.log(idTabla)
+        idTablaGlobal = idTabla;
+        arrayLinea = arrayBeneficiarios["'" + idTabla + "'"];
+        $('#benNombresApellidos').val(arrayLinea[0]);
+        $('#benPaisParentesco').val(arrayLinea[1]);
+        $('#benFechaNacimiento').datepicker("setDate", arrayLinea[2]);
+        $('#benPaisResidencia').val(arrayLinea[4]);
+        $('#benPaisOrigen').val(arrayLinea[5]);
+        $('#addBeneficiario').hide();
+        $('#updateBeneficiario').show();
+        $('#cancelarUpdateBeneficiario').show();
+    }
+
+    function quitarBen(idTabla) {
+        //$('#listaBeneficiarios #trBen_'+idTabla).remove();
+        idTablaGlobal = idTabla;
+        $('#confirmacionOpcion').modal('show')
+        console.log(idTabla)
+
+    }
+
+    $("#cancelarUpdateBeneficiario").on("click", function() {
+        $('# form2')[0].reset();
+        $('#updateBeneficiario').hide();
+        $('#cancelarUpdateBeneficiario').hide();
+        $('#addBeneficiario').show();
+    });
+
+    function respuestaCheck(idPregunta, elemento) {
+        if (elemento.checked) {
+            $('#benPregunta' + idPregunta).prop('disabled', false);
+            $('#benPregunta' + idPregunta).selectpicker('refresh');
+        } else {
+            $('#benPregunta' + idPregunta).prop('disabled', true);
+            $('#benPregunta' + idPregunta).selectpicker('refresh');
+        }
+    }
+
+
+
+    var modalConfirm = function(callback) {
+
+        $("#btn-confirm").on("click", function() {
+            $("#confirmacionOpcion").modal('show');
+        });
+
+        $("#modal-btn-si").on("click", function() {
+            callback(true);
+            $("#confirmacionOpcion").modal('hide');
+        });
+
+        $("#modal-btn-no").on("click", function() {
+            callback(false);
+            $("#confirmacionOpcion").modal('hide');
+        });
+    };
+
+    modalConfirm(function(confirm) {
+        if (confirm) {
+            //Acciones si el usuario confirma
+            $('#listaBeneficiarios #trBen_' + idTablaGlobal).remove();
+            delete arrayBeneficiarios["'" + idTablaGlobal + "'"];
+            $('[id^=benPregunta] option[value=' + idTablaGlobal + ']').remove();
+            $('[id^=benPregunta]').selectpicker('refresh');
+        }
+    });
+</script>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            console.log('Validando Form');
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+
+    //localStorage.setItem("Nombre", nom);
+    var canvas = document.getElementById('signature-pad');
+
+    // Adjust canvas coordinate space taking into account pixel ratio,
+    // to make it look crisp on mobile devices.
+    // This also causes canvas to be cleared.
+    function resizeCanvas() {
+        // When zoomed out to less than 100%, for some very strange reason,
+        // some browsers report devicePixelRatio as less than 1
+        // and only part of the canvas is cleared then.
+        var ratio = Math.max(window.devicePixelRatio || 1, 1);
+        canvas.width = canvas.offsetWidth * ratio;
+        canvas.height = canvas.offsetHeight * ratio;
+        canvas.getContext("2d").scale(ratio, ratio);
+    }
+
+    window.onresize = resizeCanvas;
+    resizeCanvas();
+
+    var signaturePad = new SignaturePad(canvas, {
+        backgroundColor: 'rgb(255, 255, 255)' // necessary for saving image as JPEG; can be removed is only saving as PNG or SVG
+    });
+
+    document.getElementById('clear').addEventListener('click', function() {
+        signaturePad.clear();
+    });
+</script>
+
+</html>
