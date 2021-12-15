@@ -299,25 +299,25 @@
                 <!-- Title -->
                 <h5 class="card-title"><a>DATOS DE LOS BENEFICIARIOS</a></h5>
                 <!-- Text -->
-                <form id='form2' id=" form2" class="needs-validation" novalidate>
+                <form id='form2' id="form2" class="needs-validation" novalidate>
                     <div class="form-row">
-                        <div class="form-group col-md-8">
-                            <label for="benNombresApellidos">Nombres y Apellidos</label>
-                            <input type="text" class="form-control" id="benNombresApellidos" name="benNombresApellidos" required>
-                        </div>
                         <div class="form-group col-md-4">
                             <label for="benParentesco">Parentesco</label>
-                            <select id="benPaisParentesco" name="benPaisParentesco" class="form-control" required>
-                    <option selected disabled value>Selecciona Uno</option>
-                    <option>Titular</option>
-                    <option>Conyuge</option>
-                    <option>Hermano(a)</option>
-                    <option>Hijo(a)</option>
-                    <option>Madre</option>
-                    <option>Nieto(a)</option>
-                    <option>Padre</option>
-                    <option>Suegro(a)</option>
-                  </select>
+                            <select id="benParentesco" name="benParentesco" class="form-control" required>
+                                <option selected disabled value>Selecciona Uno</option>
+                                <option value='titular'>Titular</option>
+                                <option value='conyuge' >Conyuge</option>
+                                <option value='hermano'>Hermano(a)</option>
+                                <option value='hijo'>Hijo(a)</option>
+                                <option value='madre'>Madre</option>
+                                <option value='nieto'>Nieto(a)</option>
+                                <option value='padre'>Padre</option>
+                                <option value='suegro'>Suegro(a)</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label for="benNombresApellidos">Nombres y Apellidos</label>
+                            <input type="text" class="form-control" id="benNombresApellidos" name="benNombresApellidos" required readonly>
                         </div>
                     </div>
 
@@ -400,8 +400,8 @@
                         <table id="listaBeneficiarios" class="table table-hover table-sm">
                             <thead>
                                 <tr>
-                                    <th scope="col">Nombres y Apellidos</th>
                                     <th scope="col">Parentesco</th>
+                                    <th scope="col">Nombres y Apellidos</th>
                                     <th scope="col">Fecha Nacimiento</th>
                                     <th scope="col">Edad</th>
                                     <th scope="col">País Residencia</th>
@@ -884,6 +884,7 @@
 
 <script>
     var seccionInicial = 1;
+    var updateBen = false;
     /*$(".choice").removeClass("expand unset ");
     $(".choice").addClass("small");
     $("#seccion"+seccionInicial).removeClass("small");
@@ -965,12 +966,18 @@
         todayHighlight: true,
         language: "es",
         orientation: "bottom auto",
+        enableOnReadonly: false,
+        disableTouchKeyboard: true,
+        format: "mm/dd/yyyy",
     });
     $('#fechaDebito').datepicker({
         autoclose: true,
         todayHighlight: true,
         language: "es",
         orientation: "bottom auto",
+        enableOnReadonly: false,
+        disableTouchKeyboard: true,
+        format: "mm/dd/yyyy",
     });
 
 
@@ -988,6 +995,9 @@
         todayHighlight: true,
         language: "es",
         orientation: "bottom auto",
+        enableOnReadonly: false,
+        disableTouchKeyboard: true,
+        format: "mm/dd/yyyy",
     });
     $('#benFechaNacimiento').datepicker("setDate", new Date());
 
@@ -1014,16 +1024,53 @@
         return age;
     }
 
+    $('#benParentesco').change(function() {
+        debugger;
+        opcionParentesco = $('#form2 #benParentesco').val();
+        if (opcionParentesco == 'titular') {
+            if (updateBen === true) {
+                $('#form2 #benParentesco').prop('disabled', true);
+            }
+            $('#form2 #benNombresApellidos').prop('readonly', true);
+            $('#form2 #benNombresApellidos').val($('#form1 #nombres').val().trim() + ' ' + $('#form1 #apellidos').val().trim());
+            $('#form2 #benFechaNacimiento').datepicker("setDate", $('#form1 #fechaNacimiento').val());
+            $('#form2 #benFechaNacimiento').prop('readonly', true);
+            $('#form2 #benPaisResidencia').val($('#form1 #paisResidencia').val());
+            $('#form2 #benPaisOrigen').val($('#form1 #paisOrigen').val());
+            $('#form2 #benPaisResidencia').prop('disabled', true);
+            $('#form2 #benPaisOrigen').prop('disabled', true);
+            $('#form2 select').selectpicker('refresh');
+            $('#benFechaNacimiento').trigger('change');
 
+        } else if (updateBen === true) {
+            $('#form2 #benNombresApellidos').prop('readonly', false);
+            $('#form2 #benFechaNacimiento').prop('readonly', false);
+            $('#form2 #benPaisResidencia').prop('disabled', false);
+            $('#form2 #benPaisOrigen').prop('disabled', false);
+            $('#form2 select').selectpicker('refresh');
+        } else {
+            resetForm('form2');
+            $('#benParentesco').val(opcionParentesco);
+            $('#form2 select').selectpicker('refresh');
+            $('#form2 #benNombresApellidos').prop('readonly', false);
+            $('#form2 #benFechaNacimiento').prop('readonly', false);
+            $('#form2 #benPaisResidencia').prop('disabled', false);
+            $('#form2 #benPaisOrigen').prop('disabled', false);
+            $('#form2 select').selectpicker('refresh');
+        }
+    })
 
 
     var cantBeneficiarios = 0;
     var idTablaGlobal;
     var arrayBeneficiarios = [];
     $("#addBeneficiario").on("click", function() {
-        $('# form2').addClass('was-validated');
-        if ($('# form2')[0].checkValidity() === true) {
-            var serialForm = ($('# form2').serializeArray());
+        $('#form2').addClass('was-validated');
+        if ($('#form2')[0].checkValidity() === true) {
+            $('#form2 #benPaisResidencia').prop('disabled', false);
+            $('#form2 #benPaisOrigen').prop('disabled', false);
+            $('#form2 select').selectpicker('refresh');
+            var serialForm = ($('#form2').serializeArray());
             strHtmlTable = '';
             arrayLinea = []
             serialForm.forEach(function(element) {
@@ -1039,17 +1086,23 @@
             $('[id^=benPregunta]').selectpicker('refresh');
             $("#listaBeneficiarios > tbody").append(strHtmlTable);
             console.log(strHtmlTable);
-            $('# form2')[0].reset();
-            $('# form2').removeClass('was-validated');
+            $('#form2')[0].reset();
+            $('#form2 select').selectpicker('refresh');
+            $('#form2').removeClass('was-validated');
             cantBeneficiarios++;
 
         }
     });
 
     $("#updateBeneficiario").on("click", function() {
-        $('# form2').addClass('was-validated');
-        if ($('# form2')[0].checkValidity() === true) {
-            var serialForm = ($('# form2').serializeArray());
+        $('#form2').addClass('was-validated');
+        if ($('#form2')[0].checkValidity() === true) {
+            updateBen = false;
+            $('#form2 #benPaisResidencia').prop('disabled', false);
+            $('#form2 #benPaisOrigen').prop('disabled', false);
+            $('#form2 #benParentesco').prop('disabled', false);
+            $('#form2 select').selectpicker('refresh');
+            var serialForm = ($('#form2').serializeArray());
             strHtmlTable = '';
             arrayLinea = []
             serialForm.forEach(function(element) {
@@ -1068,24 +1121,29 @@
             console.log(strHtmlTable);
             $('#addBeneficiario').show();
             $('#updateBeneficiario').hide();
-            $('# form2')[0].reset();
-            $('# form2').removeClass('was-validated');
+            $('#form2')[0].reset();
+            $('#form2').removeClass('was-validated');
             $('#cancelarUpdateBeneficiario').hide();
+            $('#form2 select').selectpicker('refresh');
         }
     });
 
     function editarBen(idTabla) {
+        debugger;
+        updateBen = true;
         console.log(idTabla)
         idTablaGlobal = idTabla;
         arrayLinea = arrayBeneficiarios["'" + idTabla + "'"];
-        $('#benNombresApellidos').val(arrayLinea[0]);
-        $('#benPaisParentesco').val(arrayLinea[1]);
+        $('#benNombresApellidos').val(arrayLinea[1]);
+        $('#benParentesco').val(arrayLinea[0]);
         $('#benFechaNacimiento').datepicker("setDate", arrayLinea[2]);
         $('#benPaisResidencia').val(arrayLinea[4]);
         $('#benPaisOrigen').val(arrayLinea[5]);
         $('#addBeneficiario').hide();
         $('#updateBeneficiario').show();
         $('#cancelarUpdateBeneficiario').show();
+        $('#form2 select').selectpicker('refresh');
+        $('#benParentesco').trigger('change');
     }
 
     function quitarBen(idTabla) {
@@ -1096,11 +1154,19 @@
 
     }
 
+    function resetForm(idForm) {
+        if (idForm == 'form2') {
+            $('#form2')[0].reset();
+            $('#updateBeneficiario').hide();
+            $('#cancelarUpdateBeneficiario').hide();
+            $('#addBeneficiario').show();
+            $('#form2 select').selectpicker('refresh');
+            updateBen = false;
+        }
+    }
+
     $("#cancelarUpdateBeneficiario").on("click", function() {
-        $('# form2')[0].reset();
-        $('#updateBeneficiario').hide();
-        $('#cancelarUpdateBeneficiario').hide();
-        $('#addBeneficiario').show();
+        resetForm('form2');
     });
 
     function respuestaCheck(idPregunta, elemento) {
