@@ -36,7 +36,6 @@ $('#cteNombresApellidos').selectpicker({
     liveSearch: true,
     liveSearchNormalize: true,
     liveSearchPlaceholder: 'Otros...',
-
 });
 
 $("#next").on("click", function() {
