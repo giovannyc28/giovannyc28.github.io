@@ -14,114 +14,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet" />
 <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-
-
-
-<style>
-    .bgProgress1 {
-        background-color: #101D42!important
-    }
-    
-    .bgProgress2 {
-        background-color: #FFBC42!important
-    }
-    
-    .bgProgress3 {
-        background-color: #27FB6B!important
-    }
-    
-    .bgProgress4 {
-        background-color: #320A28!important
-    }
-    
-    .bgProgress5 {
-        background-color: #6F1D1B!important
-    }
-    
-    .bgProgress6 {
-        background-color: #FE5D26!important
-    }
-    
-    .bgProgress7 {
-        background: color #101d42;
-        !important
-    }
-    
-    .container {
-        display: flex;
-        width: 100%;
-        padding: 0;
-    }
-    
-    .choice {
-        height: 69vh;
-        box-sizing: border-box;
-        padding: 0;
-        overflow: auto;
-        float: left;
-        align-items: center;
-        transition: width 0.0s;
-        border-radius: 3px;
-    }
-    
-    .expand {
-        width: 100%;
-    }
-    
-    .unset {
-        width: 10%;
-        background-color: rgb(255, 255, 255) !important;
-    }
-    
-    .small {
-        width: 0%;
-        background-color: rgb(255, 255, 255) !important;
-    }
-    
-    .small>div {
-        opacity: 0;
-    }
-    
-    .unset>div>p {
-        opacity: 0;
-    }
-    
-    .expand>div {
-        transition-delay: 0ms;
-        opacity: 1;
-    }
-    
-    .fa {
-        position: relative;
-        z-index: 2;
-        top: -35px;
-        left: 50%;
-    }
-    
-    .btn-info.active {
-        background-color: limegreen;
-    }
-    
-    .wrapper {
-        position: relative;
-        width: 400px;
-        height: 100px;
-        -moz-user-select: none;
-        -webkit-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-    
-    .signature-pad {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 400px;
-        height: 100px;
-        background-color: white;
-        border: 1px solid #101d42;
-    }
-</style>
+<link href="./css/main.css" rel="stylesheet">
 </head>
 
 <body>
@@ -187,7 +80,7 @@
                         </div>
                         <div class="form-group   col-md-4">
                             <label for="estadoCivil">Estado Civil</label>
-                            <select id="estadoCivil" class="form-control" required>
+                            <select id="estadoCivil" class="selectpicker form-control" required>
                       <option selected disabled value>Selecciona Uno</option>
                       <option>Casado(a)</option>
                       <option>Divorciado(a)</option>
@@ -213,7 +106,7 @@
                         </div>
                         <div class="form-group   col-md-3">
                             <label for="paisResidencia">País Residencia</label>
-                            <select id="paisResidencia" class="form-control" required>
+                            <select id="paisResidencia" class="selectpicker form-control" required>
                       <option selected disabled value>Selecciona Uno</option>
                       <option>Argentina</option>
                       <option>Belice</option>
@@ -251,7 +144,7 @@
                         </div>
                         <div class="form-group   col-md-3">
                             <label for="paisOrigen">País Origen</label>
-                            <select id="paisOrigen" class="form-control" required>
+                            <select id="paisOrigen" class="selectpicker form-control" required>
                       <option selected disabled value>Selecciona Uno</option>
                       <option>Argentina</option>
                       <option>Belice</option>
@@ -303,7 +196,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="benParentesco">Parentesco</label>
-                            <select id="benParentesco" name="benParentesco" class="form-control" required>
+                            <select id="benParentesco" name="benParentesco" class="selectpicker form-control" required>
                                 <option selected disabled value>Selecciona Uno</option>
                                 <option value='titular'>Titular</option>
                                 <option value='conyuge' >Conyuge</option>
@@ -337,7 +230,7 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="benPaisResidencia">País Residencia</label>
-                            <select id="benPaisResidencia" name="benPaisResidencia" class="form-control" required>
+                            <select id="benPaisResidencia" name="benPaisResidencia" class="selectpicker form-control" required>
                     <option selected disabled value>Selecciona Uno</option>
                     <option>Argentina</option>
                     <option>Belice</option>
@@ -365,7 +258,7 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="benPaisOrigen">País Origen</label>
-                            <select id="benPaisOrigen" name="benPaisOrigen" class="form-control" required>
+                            <select id="benPaisOrigen" name="benPaisOrigen" class="selectpicker form-control" required>
                     <option selected disabled value>Selecciona Uno</option>
                     <option>Argentina</option>
                     <option>Belice</option>
@@ -437,7 +330,6 @@
                     <div class="form-row">
                         <div class="form-group col-md-11">
                             <select id='benPregunta1' class="selectpicker" multiple title="Selecciona ..." data-width="100%" disabled required>
-                          
                         </select>
                         </div>
                     </div>
@@ -505,11 +397,11 @@
                     <div class="form-row">
                         <div class="form-group   col-md-8">
                             <label for="cteNombresApellidos">Nombres y Apellidos</label>
-                            <input type="text" class="form-control" id="benNombresApellidos" name="benNombresApellidos" required>
+                            <select id='cteNombresApellidos' class="selectpicker form-control" title="Selecciona ..." data-width="100%" required></select>
                         </div>
                         <div class="form-group   col-md-4">
                             <label for="cteParentesco">Parentesco</label>
-                            <select id="cteParentesco" name="cteParentesco" class="form-control" required>
+                            <select id="cteParentesco" class="selectpicker form-control" name="cteParentesco" class="form-control" required>
                                 <option selected disabled value>Selecciona Uno</option>
                                 <option>Titular</option>
                                 <option>Conyuge</option>
@@ -544,7 +436,7 @@
                         </div>
                         <div class="form-group   col-md-3">
                             <label for="ctePais">País</label>
-                            <select id="ctePais" name="ctePais" class="form-control" required>
+                            <select id="ctePais" name="ctePais" class="selectpicker form-control" required>
                               <option selected disabled value>Selecciona Uno</option>
                               <option>Argentina</option>
                               <option>Belice</option>
@@ -605,7 +497,7 @@
                     <div class="form-row">
                         <div class="form-group   col-md-4">
                             <label for="planº">Nombre del plan</label>
-                            <select id="plan" name="plan" class="form-control" required>
+                            <select id="plan" name="plan" class="selectpicker form-control" required>
                               <option selected disabled value>Selecciona Uno</option>
                               <option>Elite</option>
                               <option>Prestige</option>
@@ -758,7 +650,7 @@
                         </div>
                         <div class="form-group   col-md-3">
                             <label for="ctePais">País</label>
-                            <select id="ctePais" name="ctePais" class="form-control" required>
+                            <select id="ctePais" name="ctePais" class="selectpicker form-control" required>
                           <option selected disabled value>Selecciona Uno</option>
                           <option>Argentina</option>
                           <option>Belice</option>
@@ -873,6 +765,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
     <script type='text/javascript' src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+    <script src="./js/app.js"></script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
@@ -881,380 +774,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
     -->
 </body>
-
-<script>
-    var seccionInicial = 1;
-    var updateBen = false;
-    /*$(".choice").removeClass("expand unset ");
-    $(".choice").addClass("small");
-    $("#seccion"+seccionInicial).removeClass("small");
-    $("#seccion"+seccionInicial).addClass("expand");
-    $("#previous").prop('disabled', true);
-
-    $(".choice").on("click", function(){
-    console.log("test");
-    $(".choice").removeClass("expand unset ");
-    $(".choice").addClass("small");
-    $(this).removeClass("small");
-    $(this).addClass("expand");
-    })*/
-    $('form').hide()
-    $(".choice").removeClass("expand unset ");
-    $(".choice").addClass("small");
-    $("#seccion1").removeClass("small");
-    $("#seccion1").addClass("expand");
-    $('form').show()
-    $('#updateBeneficiario').hide();
-    $('#cancelarUpdateBeneficiario').hide();
-
-    $(document).ready(function() {
-        $(":input").inputmask();
-        $('select').selectpicker();
-        $("#previous").prop('disabled', true);
-    });
-
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
-        $('.selectpicker').selectpicker('mobile');
-    }
-
-
-    $("#next").on("click", function() {
-
-        $('#form' + seccionInicial).addClass('was-validated');
-        //if ($('#form' + seccionInicial)[0].checkValidity() === true && seccionInicial != 2) {
-        console.log(seccionInicial);
-        $('#pb' + seccionInicial).removeClass("bg-transparent");
-        $('#pb' + seccionInicial).addClass("bgProgress" + seccionInicial);
-        //$("#pb"+seccionInicial).attr('aria-valuenow', 10).css('width', 10+'%');
-        if (seccionInicial >= 1 && seccionInicial < $(".choice").length) {
-            seccionInicial++;
-            $("#previous").prop('disabled', false);
-        } else
-            $("#next").prop('disabled', true);
-        //seccionInicial = 1;
-
-
-        $(".choice").removeClass("expand unset ");
-        $(".choice").addClass("small");
-        $("#seccion" + seccionInicial).removeClass("small");
-        $("#seccion" + seccionInicial).addClass("expand");
-        //$("#pb"+seccionInicial).attr('aria-valuenow', 10).css('width', 10+'%');
-        //}
-
-    })
-
-    $("#previous").on("click", function() {
-        console.log("test");
-        console.log(seccionInicial);
-        $('#pb' + seccionInicial).removeClass("bgProgress" + seccionInicial);
-        $('#pb' + seccionInicial).addClass("bg-transparent");
-        if (seccionInicial > 1 && seccionInicial < $(".choice").length + 1) {
-            seccionInicial--;
-            $("#next").prop('disabled', false);
-        } else
-            $("#previous").prop('disabled', true);
-        //seccionInicial = 1;
-        // $("#pb"+seccionInicial).attr('aria-valuenow', 0).css('width', 0+'%');
-        $(".choice").removeClass("expand unset ");
-        $(".choice").addClass("small");
-        $("#seccion" + seccionInicial).removeClass("small");
-        $("#seccion" + seccionInicial).addClass("expand");
-
-    })
-    $('#fechaNacimiento').datepicker({
-        autoclose: true,
-        todayHighlight: true,
-        language: "es",
-        orientation: "bottom auto",
-        enableOnReadonly: false,
-        disableTouchKeyboard: true,
-        format: "mm/dd/yyyy",
-    });
-    $('#fechaDebito').datepicker({
-        autoclose: true,
-        todayHighlight: true,
-        language: "es",
-        orientation: "bottom auto",
-        enableOnReadonly: false,
-        disableTouchKeyboard: true,
-        format: "mm/dd/yyyy",
-    });
-
-
-    $("#expiraTC").datepicker({
-        format: "mm-yyyy",
-        startView: "months",
-        minViewMode: "months",
-        language: "es",
-    });
-
-    $('#fechaNacimiento').datepicker("setDate", new Date());
-
-    $('#benFechaNacimiento').datepicker({
-        autoclose: true,
-        todayHighlight: true,
-        language: "es",
-        orientation: "bottom auto",
-        enableOnReadonly: false,
-        disableTouchKeyboard: true,
-        format: "mm/dd/yyyy",
-    });
-    $('#benFechaNacimiento').datepicker("setDate", new Date());
-
-
-    $("#benFechaNacimiento").change(function() {
-        var today = new Date();
-        var birthDate = new Date($(this).datepicker('getDate'));
-        var age = today.getFullYear() - birthDate.getFullYear();
-        var m = today.getMonth() - birthDate.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-            age--;
-        }
-        console.log(age)
-        return $('#benEdad').val(age);
-    });
-
-    function GetAge(birthDate) {
-        var today = new Date();
-        var age = today.getFullYear() - birthDate.getFullYear();
-        var m = today.getMonth() - birthDate.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-            age--;
-        }
-        return age;
-    }
-
-    $('#benParentesco').change(function() {
-        debugger;
-        opcionParentesco = $('#form2 #benParentesco').val();
-        if (opcionParentesco == 'titular') {
-            if (updateBen === true) {
-                $('#form2 #benParentesco').prop('disabled', true);
-            }
-            $('#form2 #benNombresApellidos').prop('readonly', true);
-            $('#form2 #benNombresApellidos').val($('#form1 #nombres').val().trim() + ' ' + $('#form1 #apellidos').val().trim());
-            $('#form2 #benFechaNacimiento').datepicker("setDate", $('#form1 #fechaNacimiento').val());
-            $('#form2 #benFechaNacimiento').prop('readonly', true);
-            $('#form2 #benPaisResidencia').val($('#form1 #paisResidencia').val());
-            $('#form2 #benPaisOrigen').val($('#form1 #paisOrigen').val());
-            $('#form2 #benPaisResidencia').prop('disabled', true);
-            $('#form2 #benPaisOrigen').prop('disabled', true);
-            $('#form2 select').selectpicker('refresh');
-            $('#benFechaNacimiento').trigger('change');
-
-        } else if (updateBen === true) {
-            $('#form2 #benNombresApellidos').prop('readonly', false);
-            $('#form2 #benFechaNacimiento').prop('readonly', false);
-            $('#form2 #benPaisResidencia').prop('disabled', false);
-            $('#form2 #benPaisOrigen').prop('disabled', false);
-            $('#form2 select').selectpicker('refresh');
-        } else {
-            resetForm('form2');
-            $('#benParentesco').val(opcionParentesco);
-            $('#form2 select').selectpicker('refresh');
-            $('#form2 #benNombresApellidos').prop('readonly', false);
-            $('#form2 #benFechaNacimiento').prop('readonly', false);
-            $('#form2 #benPaisResidencia').prop('disabled', false);
-            $('#form2 #benPaisOrigen').prop('disabled', false);
-            $('#form2 select').selectpicker('refresh');
-        }
-    })
-
-
-    var cantBeneficiarios = 0;
-    var idTablaGlobal;
-    var arrayBeneficiarios = [];
-    $("#addBeneficiario").on("click", function() {
-        $('#form2').addClass('was-validated');
-        if ($('#form2')[0].checkValidity() === true) {
-            $('#form2 #benPaisResidencia').prop('disabled', false);
-            $('#form2 #benPaisOrigen').prop('disabled', false);
-            $('#form2 select').selectpicker('refresh');
-            var serialForm = ($('#form2').serializeArray());
-            strHtmlTable = '';
-            arrayLinea = []
-            serialForm.forEach(function(element) {
-                console.log(element);
-                strHtmlTable = strHtmlTable + '<td>' + element['value'] + '</td>';
-                arrayLinea.push(element['value']);
-                console.log(arrayLinea);
-            });
-            arrayBeneficiarios["'" + cantBeneficiarios + "'"] = [];
-            arrayBeneficiarios["'" + cantBeneficiarios + "'"] = arrayLinea;
-            strHtmlTable = '<tr id="trBen_' + cantBeneficiarios + '">' + strHtmlTable + '<td><button type="button" onClick="editarBen(' + cantBeneficiarios + ')" class="btn btn-info"><i class="bi bi-pen-fill"></i></button></td><td><button type="button" class="btn btn-danger" onClick="quitarBen(' + cantBeneficiarios + ')"><i class="bi bi-trash-fill"></i></button></td></tr>';
-            $('[id^=benPregunta]').append('<option value=' + cantBeneficiarios + '>' + arrayLinea[0] + '</option>');
-            $('[id^=benPregunta]').selectpicker('refresh');
-            $("#listaBeneficiarios > tbody").append(strHtmlTable);
-            console.log(strHtmlTable);
-            $('#form2')[0].reset();
-            $('#form2 select').selectpicker('refresh');
-            $('#form2').removeClass('was-validated');
-            cantBeneficiarios++;
-
-        }
-    });
-
-    $("#updateBeneficiario").on("click", function() {
-        $('#form2').addClass('was-validated');
-        if ($('#form2')[0].checkValidity() === true) {
-            updateBen = false;
-            $('#form2 #benPaisResidencia').prop('disabled', false);
-            $('#form2 #benPaisOrigen').prop('disabled', false);
-            $('#form2 #benParentesco').prop('disabled', false);
-            $('#form2 select').selectpicker('refresh');
-            var serialForm = ($('#form2').serializeArray());
-            strHtmlTable = '';
-            arrayLinea = []
-            serialForm.forEach(function(element) {
-                console.log(element);
-                strHtmlTable = strHtmlTable + '<td>' + element['value'] + '</td>';
-                arrayLinea.push(element['value']);
-                console.log(arrayLinea);
-            });
-            arrayBeneficiarios["'" + idTablaGlobal + "'"] = [];
-            arrayBeneficiarios["'" + idTablaGlobal + "'"] = arrayLinea;
-            $('#listaBeneficiarios > tbody #trBen_' + idTablaGlobal).html('');
-            $('#listaBeneficiarios > tbody #trBen_' + idTablaGlobal).html(strHtmlTable + '<td><button type="button" onClick="editarBen(' + idTablaGlobal + ')" class="btn btn-info"><i class="bi bi-pen-fill"></i></button></td><td><button type="button" class="btn btn-danger" onClick="quitarBen(' + idTablaGlobal + ')"><i class="bi bi-trash-fill"></i></button></td>');
-            $("option[value=optionvalue]").html('New text');
-            $('[id^=benPregunta] option[value=' + idTablaGlobal + ']').html(arrayLinea[0]);
-            $('[id^=benPregunta]').selectpicker('refresh');
-            console.log(strHtmlTable);
-            $('#addBeneficiario').show();
-            $('#updateBeneficiario').hide();
-            $('#form2')[0].reset();
-            $('#form2').removeClass('was-validated');
-            $('#cancelarUpdateBeneficiario').hide();
-            $('#form2 select').selectpicker('refresh');
-        }
-    });
-
-    function editarBen(idTabla) {
-        debugger;
-        updateBen = true;
-        console.log(idTabla)
-        idTablaGlobal = idTabla;
-        arrayLinea = arrayBeneficiarios["'" + idTabla + "'"];
-        $('#benNombresApellidos').val(arrayLinea[1]);
-        $('#benParentesco').val(arrayLinea[0]);
-        $('#benFechaNacimiento').datepicker("setDate", arrayLinea[2]);
-        $('#benPaisResidencia').val(arrayLinea[4]);
-        $('#benPaisOrigen').val(arrayLinea[5]);
-        $('#addBeneficiario').hide();
-        $('#updateBeneficiario').show();
-        $('#cancelarUpdateBeneficiario').show();
-        $('#form2 select').selectpicker('refresh');
-        $('#benParentesco').trigger('change');
-    }
-
-    function quitarBen(idTabla) {
-        //$('#listaBeneficiarios #trBen_'+idTabla).remove();
-        idTablaGlobal = idTabla;
-        $('#confirmacionOpcion').modal('show')
-        console.log(idTabla)
-
-    }
-
-    function resetForm(idForm) {
-        if (idForm == 'form2') {
-            $('#form2')[0].reset();
-            $('#updateBeneficiario').hide();
-            $('#cancelarUpdateBeneficiario').hide();
-            $('#addBeneficiario').show();
-            $('#form2 select').selectpicker('refresh');
-            updateBen = false;
-        }
-    }
-
-    $("#cancelarUpdateBeneficiario").on("click", function() {
-        resetForm('form2');
-    });
-
-    function respuestaCheck(idPregunta, elemento) {
-        if (elemento.checked) {
-            $('#benPregunta' + idPregunta).prop('disabled', false);
-            $('#benPregunta' + idPregunta).selectpicker('refresh');
-        } else {
-            $('#benPregunta' + idPregunta).prop('disabled', true);
-            $('#benPregunta' + idPregunta).selectpicker('refresh');
-        }
-    }
-
-
-
-    var modalConfirm = function(callback) {
-
-        $("#btn-confirm").on("click", function() {
-            $("#confirmacionOpcion").modal('show');
-        });
-
-        $("#modal-btn-si").on("click", function() {
-            callback(true);
-            $("#confirmacionOpcion").modal('hide');
-        });
-
-        $("#modal-btn-no").on("click", function() {
-            callback(false);
-            $("#confirmacionOpcion").modal('hide');
-        });
-    };
-
-    modalConfirm(function(confirm) {
-        if (confirm) {
-            //Acciones si el usuario confirma
-            $('#listaBeneficiarios #trBen_' + idTablaGlobal).remove();
-            delete arrayBeneficiarios["'" + idTablaGlobal + "'"];
-            $('[id^=benPregunta] option[value=' + idTablaGlobal + ']').remove();
-            $('[id^=benPregunta]').selectpicker('refresh');
-        }
-    });
-</script>
-<script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function() {
-        'use strict';
-        window.addEventListener('load', function() {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            console.log('Validando Form');
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
-    })();
-
-    //localStorage.setItem("Nombre", nom);
-    var canvas = document.getElementById('signature-pad');
-
-    // Adjust canvas coordinate space taking into account pixel ratio,
-    // to make it look crisp on mobile devices.
-    // This also causes canvas to be cleared.
-    function resizeCanvas() {
-        // When zoomed out to less than 100%, for some very strange reason,
-        // some browsers report devicePixelRatio as less than 1
-        // and only part of the canvas is cleared then.
-        var ratio = Math.max(window.devicePixelRatio || 1, 1);
-        canvas.width = canvas.offsetWidth * ratio;
-        canvas.height = canvas.offsetHeight * ratio;
-        canvas.getContext("2d").scale(ratio, ratio);
-    }
-
-    window.onresize = resizeCanvas;
-    resizeCanvas();
-
-    var signaturePad = new SignaturePad(canvas, {
-        backgroundColor: 'rgb(255, 255, 255)' // necessary for saving image as JPEG; can be removed is only saving as PNG or SVG
-    });
-
-    document.getElementById('clear').addEventListener('click', function() {
-        signaturePad.clear();
-    });
-</script>
 
 </html>

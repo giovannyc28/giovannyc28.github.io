@@ -1,0 +1,103 @@
+.bgProgress1 {
+    background-color: #101D42!important
+}
+
+.bgProgress2 {
+    background-color: #FFBC42!important
+}
+
+.bgProgress3 {
+    background-color: #27FB6B!important
+}
+
+.bgProgress4 {
+    background-color: #320A28!important
+}
+
+.bgProgress5 {
+    background-color: #6F1D1B!important
+}
+
+.bgProgress6 {
+    background-color: #FE5D26!important
+}
+
+.bgProgress7 {
+    background: color #101d42;
+    !important
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    padding: 0;
+}
+
+.choice {
+    height: 69vh;
+    box-sizing: border-box;
+    padding: 0;
+    overflow: auto;
+    float: left;
+    align-items: center;
+    transition: width 0.0s;
+    border-radius: 3px;
+}
+
+.expand {
+    width: 100%;
+}
+
+.unset {
+    width: 10%;
+    background-color: rgb(255, 255, 255) !important;
+}
+
+.small {
+    width: 0%;
+    background-color: rgb(255, 255, 255) !important;
+}
+
+.small>div {
+    opacity: 0;
+}
+
+.unset>div>p {
+    opacity: 0;
+}
+
+.expand>div {
+    transition-delay: 0ms;
+    opacity: 1;
+}
+
+.fa {
+    position: relative;
+    z-index: 2;
+    top: -35px;
+    left: 50%;
+}
+
+.btn-info.active {
+    background-color: limegreen;
+}
+
+.wrapper {
+    position: relative;
+    width: 400px;
+    height: 100px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.signature-pad {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 400px;
+    height: 100px;
+    background-color: white;
+    border: 1px solid #101d42;
+}
