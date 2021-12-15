@@ -32,11 +32,11 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
     $('.selectpicker').selectpicker('mobile');
 }
 
-$('#cteNombresApellidos').selectpicker({
+/*$('#cteNombresApellidos').selectpicker({
     liveSearch: true,
     liveSearchNormalize: true,
     liveSearchPlaceholder: 'Otros...',
-});
+});*/
 
 $("#next").on("click", function() {
 
