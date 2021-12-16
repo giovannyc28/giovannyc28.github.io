@@ -32,6 +32,22 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
     $('.selectpicker').selectpicker('mobile');
 }
 
+$('#cteNombresApellidos').selectpicker({
+    noneResultsText: "Haz Clik para adicionar: <button id='btnSelect' onclick='addOptionCte(this)'>{0}</button>"
+});
+
+function addOptionCte(that) {
+    console.log($(that).text().replaceAll('"', ''))
+    $("#cteNombresApellidos option[value='-1']").remove();
+    $('#cteNombresApellidos').append('<option value= "-1">' + $(that).text().replaceAll('"', '') + '</option>');
+    $('#cteNombresApellidos').selectpicker('refresh');
+
+    $("#cteNombresApellidos option[value='-1']").remove();
+    $('#cteNombresApellidos').append('<option value= "-1">' + $(that).text().replaceAll('"', '') + '</option>');
+    $('#cteNombresApellidos').val(-1);
+    $('#cteNombresApellidos').selectpicker('refresh');
+    $('#cteNombresApellidos').selectpicker('refresh');
+}
 /*$('#cteNombresApellidos').selectpicker({
     liveSearch: true,
     liveSearchNormalize: true,
@@ -145,7 +161,6 @@ function GetAge(birthDate) {
 }
 
 $('#benParentesco').change(function() {
-    debugger;
     opcionParentesco = $('#form2 #benParentesco').val();
     if (opcionParentesco == 'titular') {
         if (updateBen === true) {
@@ -253,7 +268,6 @@ $("#updateBeneficiario").on("click", function() {
 });
 
 function editarBen(idTabla) {
-    debugger;
     updateBen = true;
     console.log(idTabla)
     idTablaGlobal = idTabla;
