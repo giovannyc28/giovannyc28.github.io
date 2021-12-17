@@ -41,8 +41,9 @@
         <div id='pb3' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-ui-checks" style="font-size: 2rem;"></i></div>
         <div id='pb4' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-phone-vibrate-fill" style="font-size: 2rem;"></i></div>
         <div id='pb5' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-box-seam" style="font-size: 2rem;"></i></div>
-        <div id='pb6' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-currency-exchange" style="font-size: 2rem;"></i></div>
-        <div id='pb7' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-card-text" style="font-size: 2rem;"></i></div>
+        <div id='pb6' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-geo-alt-fill" style="font-size: 2rem;"></i></div>
+        <div id='pb7' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-currency-exchange" style="font-size: 2rem;"></i></div>
+        <div id='pb8' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-card-text" style="font-size: 2rem;"></i></div>
     </div>
 
     <div id='secciones' class="shadow-sm p-1 mb-5 bg-white rounded container mt-1 justify-content-center">
@@ -403,14 +404,14 @@
                             <label for="cteParentesco">Parentesco</label>
                             <select id="cteParentesco" class="selectpicker form-control" name="cteParentesco" class="form-control" required>
                                 <option selected disabled value>Selecciona Uno</option>
-                                <option>Titular</option>
-                                <option>Conyuge</option>
-                                <option>Hermano(a)</option>
-                                <option>Hijo(a)</option>
-                                <option>Madre</option>
-                                <option>Nieto(a)</option>
-                                <option>Padre</option>
-                                <option>Suegro(a)</option>
+                                <option value='titular'>Titular</option>
+                                <option value='conyuge' >Conyuge</option>
+                                <option value='hermano'>Hermano(a)</option>
+                                <option value='hijo'>Hijo(a)</option>
+                                <option value='madre'>Madre</option>
+                                <option value='nieto'>Nieto(a)</option>
+                                <option value='padre'>Padre</option>
+                                <option value='suegro'>Suegro(a)</option>
                             </select>
                         </div>
                     </div>
@@ -478,7 +479,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">@</span>
                                 </div>
-                                <input type="email" class="form-control" id="email" required>
+                                <input type="email" class="form-control" id="cteEmail" required>
                             </div>
 
                         </div>
@@ -509,8 +510,8 @@
                               <option>ReNaser Classic G8</option>
                           </select>
                         </div>
-                        <div class="form-group   col-md-3">
-                            <label for="planValor">Costo Anual</label>
+                        <div class="form-group   col-md-4">
+                            <label for="planValor">Valor</label>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">USD$</span>
@@ -519,6 +520,18 @@
                             </div>
 
                         </div>
+                        <div class="form-group   col-md-4">
+                            <label for="planValorCargo">Cargo Administración</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">USD$</span>
+                                </div>
+                                <input id="planValorCargo" name="planValorCargo" class="form-control" data-inputmask="'alias': 'decimal', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'" style="text-align: right;">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-row">
                         <div class="form-group   col-md-5">
                             <label for="planPeriodo">Modalidad de pago</label>
                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -542,115 +555,35 @@
 
         </div>
 
-        <div id='seccion6' class="choice unset justify-content-center">
-
+        <div id="seccion6" class="choice unset justify-content-center">
             <div class="card-body">
-                <!-- Title -->
-                <h5 class="card-title"><a>INFORMACIÓN DE PAGO</a></h5>
+                <h5 class="card-title"><a>Información de la tarjeta (Donde recibe el estado de cuenta)</a></h5>
                 <form id="form6" class="needs-validation" novalidate>
-                    <div class="form-row">
-                        <div class="form-group   col-md-5">
-                            <label for="nombretc">Nombre (como aparece en la tarjeta)</label>
-                            <input type="text" class="form-control" id="nombretc" name="nombretc" required>
-                        </div>
-                        <div class="form-group   col-md-4">
-                            <label for="numeroTc">Número de la Tarjeta</label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">#</span>
-                                </div>
-                                <input id="numeroTc" name="numeroTc" class="form-control" data-inputmask="'mask': '9999 9999 9999 9999'" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group   col-md-3">
-                            <label for="valorTc">Costo Anual</label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">USD$</span>
-                                </div>
-                                <input id="valorTc" name="valorTc" class="form-control" data-inputmask="'alias': 'decimal', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'" style="text-align: right;" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group   col-md-5">
-                            <label for="franquiciaCT">Franquicia Tarjeta de Credito</label>
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-outline-secondary active">
-                                <input type="radio" name="franquiciaCT" id="option1" > 
-                                  <span style="font-size: 2em; color:#eb001b;">
-                                    <i class="fab fa-cc-mastercard"></i>
-                                  </span>
-                              </label>
-                                <label class="btn btn-outline-secondary">
-                                <input type="radio" name="franquiciaCT" id="option2"> 
-                                  <span style="font-size: 2em; color: #172274;">
-                                    <i class="fab fa-cc-visa"></i>
-                                  </span>
-                              </label>
-                                <label class="btn btn-outline-secondary">
-                                <input type="radio" name="franquiciaCT" id="option3">
-                                  <span style="font-size: 2em; color: #629f86;">
-                                    <i class="fab fa-cc-amex"></i>
-                                  </span>
-                              </label>
-                                <label class="btn btn-outline-secondary">
-                                <span style="font-size: 2em; color: #E55c20;">
-                                  <input type="radio" name="franquiciaCT" id="option4"> <i class="fab fa-cc-discover"></i>
-                                </span>
-                              </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group   col-md-3">
-                            <label for="expiraTC">Fecha Expira</label>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" id="expiraTC" data-date-start-date="0d" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group   col-md-1">
-                            <label for="numeroTc">CVV</label>
-                            <input id="numeroTc" name="numeroTc" class="form-control" data-inputmask="'mask': '999'" required>
-                        </div>
-                        <div class="form-group   col-md-3">
-                            <label for="fechaDebito">Fecha a Debitar</label>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" id="fechaDebito" data-date-start-date="0d" required>
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <p class="p-2 bg-secondary text-white">Información de la tarjeta (Donde recibe el estado de cuenta)</p>
                     <p class="p-2 bg-white">Por favor indique si la dirección es la misma que el contratante
-                        <input id='Pregunta1' onChange='respuestaCheck(1, this)' type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">
+                        <input id='infoPregunta1' onChange='respuestaInfoCheck(this)' type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">
                     </p>
                     <div class="form-row">
                         <div class="form-group   col-md-12">
-                            <label for="cteDireccion">Dirección</label>
-                            <input type="text" class="form-control" id="cteDireccion" name='cteDireccion' required>
+                            <label for="infoDireccion">Dirección</label>
+                            <input type="text" class="form-control" id="infoDireccion" name='infoDireccion' required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group   col-md-3">
-                            <label for="cteCiudad">Ciudad</label>
-                            <input type="text" class="form-control" id="cteCiudad" name="cteCiudad" required>
+                            <label for="infoCiudad">Ciudad</label>
+                            <input type="text" class="form-control" id="infoCiudad" name="infoCiudad" required>
                         </div>
                         <div class="form-group   col-md-3">
-                            <label for="cteProvincia">Provincia o Estado</label>
-                            <input type="text" class="form-control" id="cteProvincia" name="cteProvincia" required>
+                            <label for="infoProvincia">Provincia o Estado</label>
+                            <input type="text" class="form-control" id="infoProvincia" name="infoProvincia" required>
                         </div>
                         <div class="form-group   col-md-3">
-                            <label for="cteCodigoPostal">Codigo Postal(si aplica)</label>
-                            <input type="text" class="form-control" id="cteCodigoPostal" name="cteCodigoPostal" required>
+                            <label for="infoCodigoPostal">Codigo Postal(si aplica)</label>
+                            <input type="text" class="form-control" id="infoCodigoPostal" name="infoCodigoPostal" required>
                         </div>
                         <div class="form-group   col-md-3">
-                            <label for="ctePais">País</label>
-                            <select id="ctePais" name="ctePais" class="selectpicker form-control" required>
+                            <label for="infoPais">País</label>
+                            <select id="infoPais" name="infoPais" class="selectpicker form-control" required>
                           <option selected disabled value>Selecciona Uno</option>
                           <option>Argentina</option>
                           <option>Belice</option>
@@ -679,48 +612,131 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group   col-md-3">
-                            <label for="cteTelefono">telefono</label>
-                            <input type="text" class="form-control" id="cteTelefono" name="cteTelefono" required>
+                            <label for="infoTelefono">telefono</label>
+                            <input type="text" class="form-control" id="infoTelefono" name="infoTelefono" required>
                         </div>
                         <div class="form-group   col-md-3">
-                            <label for="cteCelular">Celular</label>
-                            <input type="text" class="form-control" id="cteCelular" name="cteCelular" required>
+                            <label for="infoCelular">Celular</label>
+                            <input type="text" class="form-control" id="infoCelular" name="infoCelular" required>
                         </div>
                         <div class="form-group   col-md-6">
-                            <label for="cteEmail">Correo Electrónico</label>
+                            <label for="infoEmail">Correo Electrónico</label>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">@</span>
                                 </div>
-                                <input type="email" class="form-control" id="email" required>
+                                <input type="email" class="form-control" id="infoEmail" name="infoEmail" required>
                             </div>
 
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group   col-md-6">
-                            <label for="cteCelular"><p style="font-size: 0.7em;" class="p-2 bg-secondary text-white">Por medio de la presente, declaro y afirmo que la información contenida en este formulario es verdadera y correcta en el mejor de mi entendimiento y acepto que es de mi responsabilidad el informar cualquier cambio inmediatamente. Entiendo que en el caso de que esta información sea falsa, incorrecta o engañosa pudiese causar la perdida de los beneficios tanto para mi y/o para los beneficiarios del plan.</p></label>
+                            <label for="infoNota"><p style="font-size: 0.7em;" class="p-2 bg-secondary text-white">Por medio de la presente, declaro y afirmo que la información contenida en este formulario es verdadera y correcta en el mejor de mi entendimiento y acepto que es de mi responsabilidad el informar cualquier cambio inmediatamente. Entiendo que en el caso de que esta información sea falsa, incorrecta o engañosa pudiese causar la perdida de los beneficios tanto para mi y/o para los beneficiarios del plan.</p></label>
                         </div>
-                        <div class="form-group   col-md-6">
-                            <div class="wrapper">
-                                <canvas id="signature-pad" class="signature-pad" width=400 height=100></canvas>
+                        <div id='signature' class="form-group   col-md-6">
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="seccion7" class="choice unset justify-content-center">
+
+            <div class="card-body">
+                <!-- Title -->
+                <h5 class="card-title"><a>INFORMACIÓN DE PAGO</a></h5>
+                <form id="form7" class="needs-validation" novalidate>
+                    <div class='form-row'>
+                        <div class="form-group text-center col-md-12">
+                            <label class="col-lg-12" for="franquiciaCT">Franquicia Tarjeta de Credito</label>
+                            <div id="divRadioTc" class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-outline-secondary">
+                                <input type="radio" name="franquiciaCT" id="option1" value='MC' > 
+                                  <span style="font-size: 2em; color:#eb001b;">
+                                    <i class="fab fa-cc-mastercard"></i>
+                                  </span>
+                              </label>
+                                <label class="btn btn-outline-secondary">
+                                <input type="radio" name="franquiciaCT" id="option2" value="VS" > 
+                                  <span style="font-size: 2em; color: #172274;">
+                                    <i class="fab fa-cc-visa"></i>
+                                  </span>
+                              </label>
+                                <label class="btn btn-outline-secondary">
+                                <input type="radio" name="franquiciaCT" id="option3" value="AM">
+                                  <span style="font-size: 2em; color: #629f86;">
+                                    <i class="fab fa-cc-amex"></i>
+                                  </span>
+                              </label>
+                                <label class="btn btn-outline-secondary">
+                                <span style="font-size: 2em; color: #E55c20;">
+                                  <input type="radio" name="franquiciaCT" id="option4" value="DV"> 
+                                    <i class="fab fa-cc-discover"></i>
+                                </span>
+                              </label>
                             </div>
-                            <button class="btn btn-primary" id="clear">Limpiar</button>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group   col-md-5">
+                            <label for="nombretc">Nombre (como aparece en la tarjeta)</label>
+                            <input type="text" class="form-control" id="nombretc" name="nombretc" required>
+                        </div>
+                        <div class="form-group   col-md-4">
+                            <label for="numeroTc">Número de la Tarjeta</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">#</span>
+                                </div>
+                                <input id="numeroTc" name="numeroTc" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group   col-md-3">
+                            <label for="valorTc">Costo Anual</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">USD$</span>
+                                </div>
+                                <input id="valorTc" name="valorTc" class="form-control" data-inputmask="'alias': 'decimal', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'" style="text-align: right;" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group   col-md-3">
+                            <label for="expiraTC">Fecha Expira</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="expiraTC" data-date-start-date="0d" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group   col-md-1">
+                            <label for="numeroTc">CVV</label>
+                            <input id="vvcTc" name="vvcTc" class="form-control" required>
+                        </div>
+                        <div class="form-group   col-md-3">
+                            <label for="fechaDebito">Fecha a Debitar</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="fechaDebito" data-date-start-date="0d" required>
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
             </div>
             </form>
         </div>
 
-        <div id='seccion7' class="choice unset justify-content-center">
-
+        <div id='seccion8' class="choice unset justify-content-center">
             <div class="card-body">
                 <!-- Title -->
                 <h5 class="card-title"><a>OBSERVACIONES</a></h5>
                 <textarea class="form-control " id="validationTextarea" placeholder="" required></textarea>
             </div>
         </div>
-
     </div>
 
 

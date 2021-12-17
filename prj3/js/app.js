@@ -26,6 +26,26 @@ $(document).ready(function() {
     $(":input").inputmask();
     $('select').selectpicker();
     $("#previous").prop('disabled', true);
+
+    $("#nombres").change(function() {
+        $('#signature').text($("#nombres").val() + ' ' + $("#apellidos").val());
+    })
+    $("#apellidos").change(function() {
+        $('#signature').text($("#nombres").val() + ' ' + $("#apellidos").val());
+    })
+
+    $('#form7 .btn-group input').on('change', function() {
+        $('#numeroTc').val('');
+        $('#vvcTc').val('');
+        $('#expiraTC').val('');
+        if ($(this).val() == "AM") {
+            $('#numeroTc').inputmask({ mask: ["9999 999999 99999"] });
+            $('#vvcTc').inputmask({ mask: ["9999"] });
+        } else {
+            $('#numeroTc').inputmask({ mask: ["9999 9999 9999 9999"] });
+            $('#vvcTc').inputmask({ mask: ["999"] });
+        }
+    });
 });
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
@@ -33,7 +53,7 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
 }
 
 $('#cteNombresApellidos').selectpicker({
-    noneResultsText: "Haz Clik para adicionar: <button id='btnSelect' onclick='addOptionCte(this)'>{0}</button>"
+    noneResultsText: "Haz Click para adicionar: <button id='btnSelect' onclick='addOptionCte(this)'>{0}</button>"
 });
 
 function addOptionCte(that) {
@@ -47,7 +67,54 @@ function addOptionCte(that) {
     $('#cteNombresApellidos').val(-1);
     $('#cteNombresApellidos').selectpicker('refresh');
     $('#cteNombresApellidos').selectpicker('refresh');
+    $('#cteNombresApellidos').trigger('change');
 }
+
+$('#cteNombresApellidos').change(function() {
+    opcionSel = $('#cteNombresApellidos').val();
+    if (opcionSel >= 0) {
+        arrayLinea = arrayBeneficiarios["'" + opcionSel + "'"];
+        if (arrayLinea[0] == 'titular') {
+            $('#cteParentesco').val(arrayLinea[0]);
+            $('#cteParentesco').selectpicker('refresh');
+            $('#cteDireccion').val($('#form1 #direccion').val());
+            $('#cteCiudad').val($('#form1 #ciudad').val());
+            $('#cteProvincia').val($('#form1 #provincia').val());
+            $('#cteCodigoPostal').val($('#form1 #codigoPostal').val());
+            $('#ctePais').val($('#form1 #paisResidencia').val());
+            $('#ctePais').selectpicker('refresh');
+            $('#cteTelefono').val($('#form1 #telefono').val());
+            $('#cteCelular').val($('#form1 #celular').val());
+            $('#cteEmail').val($('#form1 #email').val());
+        } else {
+            $('#cteParentesco').val(arrayLinea[0]);
+            $('#cteParentesco').selectpicker('refresh');
+            $('#cteDireccion').val('');
+            $('#cteCiudad').val('');
+            $('#cteProvincia').val('');
+            $('#cteCodigoPostal').val('');
+            $('#ctePais').val('');
+            $('#ctePais').selectpicker('refresh');
+            $('#cteTelefono').val('');
+            $('#cteCelular').val('');
+            $('#cteEmail').val('');
+        }
+    } else {
+        $('#cteParentesco').val('');
+        $('#cteParentesco').selectpicker('refresh');
+        $('#cteDireccion').val('');
+        $('#cteCiudad').val('');
+        $('#cteProvincia').val('');
+        $('#cteCodigoPostal').val('');
+        $('#ctePais').val('');
+        $('#ctePais').selectpicker('refresh');
+        $('#cteTelefono').val('');
+        $('#cteCelular').val('');
+        $('#cteEmail').val('');
+
+    }
+    console.log('Opcion:' + opcionSel);
+});
 /*$('#cteNombresApellidos').selectpicker({
     liveSearch: true,
     liveSearchNormalize: true,
@@ -313,11 +380,34 @@ function respuestaCheck(idPregunta, elemento) {
         $('#benPregunta' + idPregunta).selectpicker('refresh');
     } else {
         $('#benPregunta' + idPregunta).prop('disabled', true);
+        $('#benPregunta' + idPregunta).val('');
         $('#benPregunta' + idPregunta).selectpicker('refresh');
     }
 }
 
-
+function respuestaInfoCheck(elemento) {
+    if (elemento.checked) {
+        $('#infoDireccion').val($('#form1 #direccion').val());
+        $('#infoCiudad').val($('#form1 #ciudad').val());
+        $('#infoProvincia').val($('#form1 #provincia').val());
+        $('#infoCodigoPostal').val($('#form1 #codigoPostal').val());
+        $('#infoPais').val($('#form1 #paisResidencia').val());
+        $('#infoPais').selectpicker('refresh');
+        $('#infoTelefono').val($('#form1 #telefono').val());
+        $('#infoCelular').val($('#form1 #celular').val());
+        $('#infoEmail').val($('#form1 #email').val());
+    } else {
+        $('#infoDireccion').val('');
+        $('#infoCiudad').val('');
+        $('#infoProvincia').val('');
+        $('#infoCodigoPostal').val('');
+        $('#infoPais').val('');
+        $('#infoPais').selectpicker('refresh');
+        $('#infoTelefono').val('');
+        $('#infoCelular').val('');
+        $('#infoEmail').val('');
+    }
+}
 
 var modalConfirm = function(callback) {
 
@@ -349,6 +439,7 @@ modalConfirm(function(confirm) {
 });
 
 
+
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function() {
     'use strict';
@@ -370,28 +461,3 @@ modalConfirm(function(confirm) {
 })();
 
 //localStorage.setItem("Nombre", nom);
-var canvas = document.getElementById('signature-pad');
-
-// Adjust canvas coordinate space taking into account pixel ratio,
-// to make it look crisp on mobile devices.
-// This also causes canvas to be cleared.
-function resizeCanvas() {
-    // When zoomed out to less than 100%, for some very strange reason,
-    // some browsers report devicePixelRatio as less than 1
-    // and only part of the canvas is cleared then.
-    var ratio = Math.max(window.devicePixelRatio || 1, 1);
-    canvas.width = canvas.offsetWidth * ratio;
-    canvas.height = canvas.offsetHeight * ratio;
-    canvas.getContext("2d").scale(ratio, ratio);
-}
-
-window.onresize = resizeCanvas;
-resizeCanvas();
-
-var signaturePad = new SignaturePad(canvas, {
-    backgroundColor: 'rgb(255, 255, 255)' // necessary for saving image as JPEG; can be removed is only saving as PNG or SVG
-});
-
-document.getElementById('clear').addEventListener('click', function() {
-    signaturePad.clear();
-});

@@ -1,3 +1,20 @@
+@font-face {
+    font-family: 'herr_von_muellerhoffregular';
+    src: url('herrvonmuellerhoff-regular-webfont.woff2') format('woff2'), url('herrvonmuellerhoff-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#signature {
+    font-family: "herr_von_muellerhoffregular";
+    font-size: 2.5em;
+    text-align: center;
+    text-transform: capitalize;
+    /* IE 9 */
+    -ms-transform: skewY(-5deg);
+    transform: skewY(-5deg);
+}
+
 .bgProgress1 {
     background-color: #101D42!important
 }
@@ -80,24 +97,4 @@
 
 .btn-info.active {
     background-color: limegreen;
-}
-
-.wrapper {
-    position: relative;
-    width: 400px;
-    height: 100px;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.signature-pad {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 400px;
-    height: 100px;
-    background-color: white;
-    border: 1px solid #101d42;
 }
