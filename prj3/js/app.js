@@ -1,5 +1,66 @@
+console.log('local::::::' + localStorage.token);
+var urlBase = "http://localhost:8000/api/";
+var myHeaders = new Headers();
+myHeaders.append("Accept", "application/json");
+myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+myHeaders.append("Authorization", "Bearer " + localStorage.token);
+console.log("--------HEADERS INIT----------------");
+console.log(myHeaders);
 var seccionInicial = 1;
 var updateBen = false;
+
+var planesRequest = null;
+
+var raw = JSON.stringify({ "": "" });
+
+var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    redirect: 'follow'
+};
+
+fetch(urlBase + "isvalid", requestOptions)
+    .then(resp => {
+        if (resp.status != 200) {
+            location.href = 'login.html';
+        } else {
+            $('body').show()
+        }
+    })
+    .catch(error => console.log('error', error));
+
+function getTarifas() {
+    console.log(myHeaders);
+    requestOptionsTar = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+
+    fetch(urlBase + "tarifas", requestOptionsTar)
+        .then(resp => {
+            console.log(resp.status);
+            localStorage.setItem("codeResponde", resp.status);
+            return resp.json();
+        })
+        .then(data => {
+            //console.log(data);
+            if (localStorage.codeResponde == 200) {
+                planesRequest = data;
+                $.each(planesRequest, function(key, value) {
+                    console.log(value)
+                    $('<option>').val(value.id).text(value.plan_type).appendTo('#plan');
+                });
+                $('#plan').selectpicker('refresh');
+            } else
+                $('#mensaje').text('Tu nombre de usuario o contraseña no coinciden')
+
+        })
+        .catch(error => console.log('error', error));
+}
+
+getTarifas();
+
 /*$(".choice").removeClass("expand unset ");
 $(".choice").addClass("small");
 $("#seccion"+seccionInicial).removeClass("small");
@@ -32,7 +93,7 @@ $(document).ready(function() {
     })
     $("#apellidos").change(function() {
         $('#signature').text($("#nombres").val() + ' ' + $("#apellidos").val());
-    })
+    });
 
     $('#form7 .btn-group input').on('change', function() {
         $('#numeroTc').val('');
@@ -273,6 +334,8 @@ $("#addBeneficiario").on("click", function() {
         $('#form2 #benPaisOrigen').prop('disabled', false);
         $('#form2 select').selectpicker('refresh');
         var serialForm = ($('#form2').serializeArray());
+        console.log("---------SERIALIZE------------");
+        console.log(serialForm);
         strHtmlTable = '';
         arrayLinea = []
         serialForm.forEach(function(element) {
@@ -344,6 +407,8 @@ function editarBen(idTabla) {
     $('#benFechaNacimiento').datepicker("setDate", arrayLinea[2]);
     $('#benPaisResidencia').val(arrayLinea[4]);
     $('#benPaisOrigen').val(arrayLinea[5]);
+    $('#benCiudad').val(arrayLinea[6]);
+    $('#benProvincia').val(arrayLinea[7]);
     $('#addBeneficiario').hide();
     $('#updateBeneficiario').show();
     $('#cancelarUpdateBeneficiario').show();
@@ -426,6 +491,10 @@ var modalConfirm = function(callback) {
     });
 };
 
+$('#cerrarSesion').on("click", function() {
+    accionLogout('logout');
+});
+
 modalConfirm(function(confirm) {
     if (confirm) {
         //Acciones si el usuario confirma
@@ -460,4 +529,12 @@ modalConfirm(function(confirm) {
     }, false);
 })();
 
-//localStorage.setItem("Nombre", nom);
+function accionLogout(accion) {
+
+    fetch(urlBase + accion, requestOptions)
+        .then(resp => {
+            if (resp.status == 200)
+                location.href = 'login.html';
+        })
+        .catch(error => console.log('error', error));
+}
